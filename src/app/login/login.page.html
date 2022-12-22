@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+
+    <body>
+        <div class="rectangulo1"></div>
+        <main>
+            <!-- Contenedor del login margen de 5    -->
+            <div class="contenedor1">
+                <div class="logo_gsaai">
+                    <img src="../../assets/icon/log-gsaai.png" height="160px" />
+                </div>
+
+                <form [formGroup]="form" (submit)="onSubmit()">
+                    <!--  (ngSubmit)="submit()" -->
+                    <!--cuadro que encierra el usuario y contraseña-->
+                    <div class="cuadro">
+                        <div class="bienvenida">
+                            <p>Bienvenidos</p>
+                        </div>
+                        <!--inputs datos usuario-->
+                        <ion-item class="id">
+                            <ion-label position="floating">Documento</ion-label>
+                            <ion-input formControlName="documento" name="documento" class="di" type="number"
+                                placeholder="Ingrese documento" autofocus required></ion-input>
+           
+                        </ion-item>
+                        <ion-item class="contrasena">
+                            <ion-label position="floating">Contraseña</ion-label>
+                            <ion-input formControlName="contrasena" name="contrasena" class="pass" type="password"
+                                placeholder="Ingrese contrasena"></ion-input>
+                        </ion-item>
+
+                        <!--cuadro de check y link olvide contraseña-->
+                        <div class="check">
+                            <div class="recordar">
+                                <input class="form-check-input" type="checkbox"> Recordar
+                            </div>
+                            <div class="content_olvide">
+                                <a class="olvide_contra" href="#">Olvidé mi contraseña</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--botón de login o Ingresar-->
+                    <ion-button  
+                        color="primary" 
+                        type="submit"
+                        [disabled]="form.invalid"
+                        class="ingresar">
+                        <!--(click)="ingresar()"> [routerLink]="['/modulos']" --> <!-- (click)="ingresar()" -->
+                        Ingresar
+                    </ion-button>
+
+                </form>
+
+                <!--solicitar cuenta-->
+                <div class="content_textos">
+                    <div class="solicitar-cuenta">
+                        <div class="tex_solicitar">
+                            <p>¿No tienes una cuenta?</p>
+                        </div>
+                        <div class="enlace_wsp">
+                            <a href="#" class="link_wsp">Solicitar por whatsapp aquí</a>
+                        </div>
+                    </div>
+                    <div class="text_linea">
+                        <p>o también por</p>
+                    </div>
+
+                    <!--Botón para solicitar usuario por correo-->
+                    <div class="btn_correo">
+                        <img src="../../assets/icon/mail.svg" height="20px">
+                        <a href="btn_correo">Correo Gmail</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--Logo del sena parte inferior derecha-->
+            <div class="logo">
+                <img src="../../assets/icon/sena-log.png">
+            </div>
+        </main>
+        <div class="rectangulo2"></div>
+    </body>
+</ion-content>

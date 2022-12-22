@@ -1,0 +1,123 @@
+<ion-content>
+
+  <nav>
+
+    <ion-toolbar color="mycolors">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/biofabrica"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Insumos</ion-title>
+    </ion-toolbar>
+
+    <div class="content_menu_h">
+      <img src="../../assets/icon/menu-h.svg" class="nav_img">
+    </div>
+  </nav>
+  <main>
+    <!--panel usuario-->
+    <div class="container1">
+      <!--foto de usuario-->
+      <div class="usuario">
+        <img src="../../assets/icon/ava-men2.svg">
+      </div>
+
+      <!--datos principales usuario-->
+      <header class="header">
+
+        <ng-container *ngIf="usuarioObservable | async as user">
+            <div class="div_nombre">
+                <label>{{user.nombres}}</label>
+            </div>
+
+            <div class="div_rol">
+                <p class="rol">{{user.rol}}</p>
+            </div>
+            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+        </ng-container>
+
+    </header>
+      <!--botón cerrar sesión-->
+      <div class="cerrar_sesion">
+        <img src="../../assets/icon/power.svg">
+      </div>
+    </div>
+
+    <div class="container2">
+
+      <div class="cod_entrega">
+        <label for="input_entrega"># entrega:</label>
+        <input type="text" id="input_entrega">
+        <input type="date" class="input_fecha">
+      </div>
+
+      <div class="content_form">
+
+        <form action="post">
+
+          <div class="opciones">
+            <label for="recibe">Recibe:</label>
+            <select name="" id="recibe">
+              <option value="" selected>-seleccione usuario-</option>
+              <option value="">Usuario 1</option>
+              <option value="">Usuario 2</option>
+              <option value="">Usuario 3</option>
+            </select>
+          </div>
+
+          <div class="opciones">
+            <label for="insumo">Insumo:</label>
+            <select name="" id="insumo">
+              <option value="" selected>-seleccione insumo-</option>
+              <option value="">Insumo 1</option>
+              <option value="">Insumo 2</option>
+              <option value="">Insumo 3</option>
+            </select>
+          </div>
+
+          <div class="opciones">
+            <label for="stock">Stock:</label>
+            <input type="text" id="stock">
+          </div>
+
+          <div class="opciones">
+            <label for="estado">Estado:</label>
+            <select name="" id="estado">
+              <option value="" selected>-seleccione estado-</option>
+              <option value="">Buen estado</option>
+              <option value="">Regular</option>
+              <option value="">Mal estado</option>
+            </select>
+          </div>
+
+          <div class="opciones">
+            <label for="procedencia">Procedencia:</label>
+            <select name="" id="procedencia">
+              <option value="" selected>-seleccine procedencia-</option>
+              <option value="">Procedencia 1</option>
+              <option value="">Procedencia 2</option>
+              <option value="">Procedencia 3</option>
+            </select>
+          </div>
+
+          <div class="div_enviar_datos">
+            <input type="submit" value="Enviar datos">
+          </div>
+          
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <footer>
+    <p>contacto:</p>
+    <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+  </footer>
+
+</ion-content>

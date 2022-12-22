@@ -1,0 +1,135 @@
+<ion-content>
+
+  <nav>
+
+    <ion-toolbar color="mycolors">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/modulos"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Modificar Usuarios</ion-title>
+    </ion-toolbar>
+
+    <div class="content_menu_h">
+      <img src="../../assets/icon/menu-h.svg" class="nav_img">
+    </div>
+  </nav>
+  <main>
+    <!--panel usuario-->
+    <div class="container1">
+      <!--foto de usuario-->
+      <div class="usuario">
+        <img src="../../assets/icon/ava-men2.svg">
+      </div>
+
+
+      <!--datos principales usuario-->
+      <header class="header">
+
+        <ng-container *ngIf="usuarioObservable | async as user">
+            <div class="div_nombre">
+                <label>{{user.nombres}}</label>
+            </div>
+
+            <div class="div_rol">
+                <p class="rol">{{user.rol}}</p>
+            </div>
+            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+        </ng-container>
+
+    </header>
+      <!--botón cerrar sesión-->
+      <div class="cerrar_sesion">
+        <img src="../../assets/icon/power.svg">
+      </div>
+    </div>
+    <!--cuadro nuevo, combinar, actualizar-->
+    <div class="container2">
+      <div class="ventanas">
+        <div class="ven_nuevo">
+          <button [routerLink]="['/confi-usuarios']">nuevo</button>
+        </div>
+        <div class="ven_modificar">
+          <button [routerLink]="['/modif-usuarios']">modificar</button>
+        </div>
+      </div>
+
+      <div class="div_usuario">
+        <label for="fecha">Fecha:</label>
+        <input type="date" class="input_fecha">
+      </div>
+
+      <!--inicio formulario-->
+      <form action="post" class="mp_entrada" autocomplete="off">
+
+        <div class="opciones">
+          <label for="documento">Documento:</label>
+          <input type="number" id="documento" placeholder="números, sin puntos">
+        </div>
+
+        <div class="opciones">
+          <label for="nombres">Nombres:</label>
+          <input type="text" id="nombres">
+        </div>
+
+        <div class="opciones">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos">
+        </div>
+
+        <div class="opciones">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo">
+        </div>
+
+        <div class="opciones">
+          <label for="contrasena">Contraseña:</label>
+          <input type="text" id="contrasena">
+        </div>
+
+        <div class="opciones">
+          <label for="rol">Rol:</label>
+          <select id="rol">
+            <option selected>-Seleccionar rol-</option>
+            <option value="1">Rol usuario 1</option>
+            <option value="2">Rol usuario 2</option>
+            <option value="3">Rol usuario 3</option>
+          </select>
+        </div>
+
+        <div class="opciones">
+          <label for="ficha">Ficha:</label>
+          <select id="ficha">
+            <option selected>-Seleccionar ficha-</option>
+            <option value="1">Ficha usuario 1</option>
+            <option value="2">Ficha usuario 2</option>
+            <option value="3">Ficha usuario 3</option>
+          </select>
+        </div>
+
+        <div class="opciones">
+          <label for="activo">¿Activo?</label>
+          <label for="">Si
+            <input type="radio" name="respuesta">
+          </label>
+          <label for="">No
+            <input type="radio" name="respuesta">
+          </label>
+        </div>
+
+        <div class="div_enviar_datos">
+          <input type="submit" value="Enviar datos">
+        </div>
+
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>contacto:</p>
+    <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+  </footer>
+
+</ion-content>

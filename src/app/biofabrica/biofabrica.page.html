@@ -1,0 +1,140 @@
+<ion-content>
+
+    <!--Nav-->
+    <nav>
+        <ion-toolbar color="mycolors">
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/modulos"></ion-back-button>
+            </ion-buttons>
+            <ion-title>Biofábrica</ion-title>
+          </ion-toolbar>
+
+        <div class="content_menu_h">
+            <img src="../../assets/icon/menu-h.svg" class="nav_img">
+        </div>
+    </nav>
+
+    <main>
+        <!--panel usuario-->
+        <div class="container1">
+            <!--foto de usuario-->
+            <div class="usuario">
+                <img src="../../assets/icon/ava-men2.svg" >
+            </div>
+
+
+            <!--datos principales usuario-->
+            <header class="header">
+
+                <ng-container *ngIf="usuarioObservable | async as user">
+                    <div class="div_nombre">
+                        <label>{{user.nombres}}</label>
+                    </div>
+
+                    <div class="div_rol">
+                        <p class="rol">{{user.rol}}</p>
+                    </div>
+                    <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+                </ng-container>
+
+            </header>
+            <!--botón cerrar sesión-->
+            <div class="cerrar_sesion">
+                <img src="../../assets/icon/power.svg">
+            </div>
+        </div>
+
+        <div class="pantalla">
+            <p>Seguimiento pilas compostaje</p>
+            <div class="mapa">
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        1</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        2</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        3</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        4</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        5</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        6</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        7</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        8</a>
+                </div>
+                <div class="content_btn_zona">
+                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
+                        9</a>
+                </div>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="titulo_container3">
+                <p>Progreso tareas 0%</p>
+                <img src="../../assets/icon/calendario.svg">
+            </div>
+            <div class="lista_tareas">
+                <div class="content_check">
+                    <label for="chk_tarea1">Nombre de tarea 1</label><input type="checkbox" id="chk_tarea1">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea2">Nombre de tarea 2</label><input type="checkbox" id="chk_tarea2">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea3">Nombre de tarea 3</label><input type="checkbox" id="chk_tarea3">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea4">Nombre de tarea 4</label><input type="checkbox" id="chk_tarea4">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea5">Nombre de tarea 5</label><input type="checkbox" id="chk_tarea5">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea6">Nombre de tarea 6</label><input type="checkbox" id="chk_tarea6">
+                </div>
+                <div class="content_check">
+                    <label for="chk_tarea7">Nombre de tarea 7</label><input type="checkbox" id="chk_tarea7">
+                </div>
+            </div>
+        </div>
+
+        <!--menu de funciones-->
+        <div class="menu">
+            <p>Menú</p>
+            <div class="cont_botones_menu">
+                <button class="btn_menu1" [routerLink]="['/mp-entrada']">Materias primas</button>
+                <button class="btn_menu2" [routerLink]="['/cp-nuevo']">Conformación pila</button>
+                <button class="btn_menu3" [routerLink]="['/parametros']">Parámetros</button>
+                <button class="btn_menu4" [routerLink]="['/bitacoras']">Bitácoras</button>
+                <button class="btn_menu5" [routerLink]="['/abonos-entrada']">Abonos</button>
+                <button class="btn_menu6" [routerLink]="['/insumos']">Insumos</button>
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <p>Contacto:</p>
+        <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+    </footer>
+
+</ion-content>

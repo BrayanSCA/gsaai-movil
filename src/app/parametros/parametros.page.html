@@ -1,0 +1,102 @@
+<ion-content>
+
+    <nav>
+        <ion-toolbar color="mycolors">
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/biofabrica"></ion-back-button>
+            </ion-buttons>
+            <ion-title>Parámetros</ion-title>
+          </ion-toolbar>
+      
+        <div class="content_menu_h">
+            <img src="../../assets/icon/menu-h.svg" class="nav_img">
+        </div>
+    </nav>
+    <main>
+        <!--panel usuario-->
+        <div class="container1">
+            <!--foto de usuario-->
+            <div class="usuario">
+                <img src="../../assets/icon/ava-men2.svg" width="150px">
+            </div>
+
+
+            <!--datos principales usuario-->
+            <header class="header">
+
+                <ng-container *ngIf="usuarioObservable | async as user">
+                    <div class="div_nombre">
+                        <label>{{user.nombres}}</label>
+                    </div>
+        
+                    <div class="div_rol">
+                        <p class="rol">{{user.rol}}</p>
+                    </div>
+                    <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+                </ng-container>
+        
+            </header>
+            <!--botón cerrar sesión-->
+            <div class="cerrar_sesion">
+                <img src="../../assets/icon/power.svg">
+            </div>
+        </div>
+
+        <!--cuadro nuevo, combinar, actualizar-->
+        <div class="container2">
+            <div class="ventanas">
+                <div class="div_btn_imprimir">
+                    <button>imprimir</button>
+                </div>
+                <div class="div_btn_pdf">
+                    <button>pdf</button>
+                </div>
+            </div>
+            <form action="post" class="form_consultas" autocomplete="off">
+                <div class="content_input">
+                    <label for="input_consulta">Consultar:</label>
+                    <select id="input_consulta">
+                        <option selected>-Seleccionar consulta-</option>
+                        <option value="1">Peso pilas</option>
+                        <option value="2">Cantidad abono</option>
+                        <option value="3">Cambios fisicoquímicos</option>
+                    </select>
+                </div>
+                <div class="content_input_fechas">
+                    <p>Rango de fechas:</p>
+                    <div class="div_fechas">
+                    <label for="desde_date">Desde:</label>
+                    <input type="date" id="desde_date">
+                    </div>
+                    <div class="div_fechas">
+                    <label for="hasta_date">Hasta:</label>
+                    <input type="date" id="hasta_date">
+                    </div>
+                </div>
+                <div class="div_enviar_datos">
+                    <input type="submit" value="Enviar datos">
+                </div>
+            </form>
+
+            <div class="container3">
+                <table class="tabla-consultas">
+                    <th>dato 1</th>
+                    <th>dato 2</th>
+                    <th>dato 3</th>
+
+                    <tr>1</tr>
+                    <tr>2</tr>
+                    <tr>3</tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>contacto:</p>
+        <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+    </footer>
+
+</ion-content>

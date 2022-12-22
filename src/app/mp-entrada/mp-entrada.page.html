@@ -1,0 +1,124 @@
+<ion-content>
+
+  <nav>
+    <ion-toolbar color="mycolors">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/biofabrica"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Entrada Materias Primas</ion-title>
+    </ion-toolbar>
+
+    <div class="content_menu_h">
+      <img src="../../assets/icon/menu-h.svg" class="nav_img">
+    </div>
+  </nav>
+
+  <div class="main">
+    <!--panel usuario-->
+    <div class="container1">
+      <!--foto de usuario-->
+      <div class="usuario">
+        <img src="../../assets/icon/ava-men2.svg">
+      </div>
+
+
+      <!--datos principales usuario-->
+      <header class="header">
+
+        <ng-container *ngIf="usuarioObservable | async as user">
+            <div class="div_nombre">
+                <label>{{user.nombres}}</label>
+            </div>
+
+            <div class="div_rol">
+                <p class="rol">{{user.rol}}</p>
+            </div>
+            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+        </ng-container>
+
+    </header>
+      <!--botón cerrar sesión-->
+      <div class="cerrar_sesion">
+        <img src="../../assets/icon/power.svg">
+      </div>
+    </div>
+
+    <!--cuadro entradas y salidas-->
+    <div class="container2">
+
+      <div class="ventanas">
+          <div class="ven_entrada">
+            <button [routerLink]="['/mp-entrada']">entradas</button>
+          </div>
+          <div class="ven_salida">
+            <button [routerLink]="['/mp-entrada']">salidas</button>
+          </div>
+      </div>
+
+      <div class="cod_entrada">
+        <label># Entrada:</label><input type="text" id="input_entrada">
+        <input type="date" class="input_fecha">
+      </div>
+      
+      <form action="post" class="mp_entrada">
+        
+        <div class="content_input">
+          <label class="label_nombre">Nombre mp: </label>
+          <select id="select_mp">
+            <option>-Seleccione materia prima-</option>
+            <option>Materia prima 1</option>
+            <option>Materia prima 2</option>
+            <option>Materia prima 3</option>
+          </select>
+        </div>
+
+        <div class="content_input">
+          <label for="" class="label_peso"> Peso (kg): </label>
+          <input type="text" class="input_peso">
+        </div>
+
+        <div class="content_input">
+          <label for="" class="label_procedencia">Procedencia: </label>
+          <select id="select_procedencia">
+            <option>Seleccione Procedencia-</option>
+            <option>Procedencia 1</option>
+            <option>Procedencia 2</option>
+            <option>Procedencia 3</option>
+          </select>
+        </div>
+
+        <div class="content_input">
+          <label for="" class="label_stock">Stock: </label>
+          <input type="text" class="input_stock" placeholder="und Kg">
+        </div>
+
+        <div class="content_input">
+          <label for="" class="label_realcion_cn">Relación C/N: </label>
+          <input type="text" class="input_relacion_cn">
+        </div>
+
+      </form>
+
+      <div class="content_agregar_mp">
+        <a href="#" class="link_agregar_mp">+</a>
+      </div>
+
+      <div class="calculo_cn">
+        <button>Calcular C/N</button>
+      </div>
+
+      <div class="div_enviar_datos">
+        <input type="submit" value="Enviar datos">
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>contacto:</p>
+    <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+  </footer>
+
+</ion-content>

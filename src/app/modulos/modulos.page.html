@@ -1,0 +1,109 @@
+<ion-content>
+
+    <!--Nav-->
+    <nav>
+        <ion-toolbar color="mycolors">
+            <ion-title>Módulos Ambientales</ion-title>
+        </ion-toolbar>
+
+        <div class="content_menu_h">
+            <img src="../../assets/icon/menu-h.svg" class="nav_img">
+        </div>
+    </nav>
+    <main>
+        <!--parte superior de la pantalla-->
+        <section class="section1">
+            <!--contenedor del panel de usuario-->
+            <div class="container1">
+                <!--contenedor de foto, texto y boton de cerrar sesión-->
+                <div class="sub_contenedor">
+                    <!--foto de usuario-->
+                    <div class="usuario">
+                        <img src="../../assets/icon/ava-men2.svg">
+                    </div>
+
+                    <!--datos principales usuario-->
+                    <header class="header">
+
+                        <ng-container *ngIf="usuarioObservable | async as user">
+                            <div class="div_nombre">
+                                <label>{{user.nombres}}</label>
+                            </div>
+
+                            <div class="div_rol">
+                                <p class="rol">{{user.rol}}</p>
+                            </div>
+                            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+                        </ng-container>
+
+                    </header>
+                    <!--botón cerrar sesión-->
+                    <div class="cerrar_sesion" (click)="cerrarSesion()">
+                        <img src="../../assets/icon/power.svg">
+                    </div>
+                </div>
+                <!--contenedor para ordenar solo los botones del panel-->
+                <div class="botones">
+                    <button [routerLink]="['/conf-sis']"><img src="../../assets/icon/engrane.svg">Configuración del
+                        sistema
+                    </button>
+                    <button [routerLink]="['/confi-perfil']"><img src="../../assets/icon/perfil.svg">Configuración de
+                        perfil
+                    </button>
+                    <button [routerLink]="['/confi-usuarios']"><img src="../../assets/icon/usuarios.svg">Configuración
+                        de usuarios
+                    </button>
+                    <button><img src="../../assets/icon/respaldo.svg">Copia de seguridad
+                    </button>
+                </div>
+            </div>
+
+            <!--logo sistema en pc-->
+            <div class="logo-sys2">
+                <img src="../../assets/icon/log-gsaai.png">
+            </div>
+        </section>
+
+        <!--Panel módulos-->
+        <section class="section2">
+            <div class="container3">
+                <!--Texto central-->
+                <div class="text-central">
+                    <h4>Seleccione módulo para ingresar</h4>
+                </div>
+                <!--Módulo 1-->
+                <div class="modulo1" [routerLink]="['/biofabrica']">
+                    <!-- <img src="img/biofa.png" alt="biofabrica"> -->
+                    <h2>Biofábrica</h2>
+                </div>
+                <!--Módulo 2-->
+                <div class="modulo2">
+                    <!-- <img src="img/lombri.png" alt="lombricultivo"> -->
+                    <h2>Lombricultura</h2>
+                    <p>... en desarrollo</p>
+                </div>
+                <!--Módulo 3-->
+                <div class="modulo3">
+                    <!-- <img src="img/respel.png" alt="respel"> -->
+                    <h2>ResPel</h2>
+                    <p>... en desarrollo</p>
+                </div>
+                <!--Módulo 4-->
+                <div class="modulo4">
+                    <!-- <img src="img/laborat.png" alt="laboratorio"> -->
+                    <h2>Laboratorio Aguas y Suelos</h2>
+                    <p>... en desarrollo</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <p>Contacto:</p>
+        <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+        <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+    </footer>
+
+</ion-content>

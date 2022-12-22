@@ -1,0 +1,91 @@
+<ion-content>
+
+  <nav>
+    
+    <ion-toolbar color="mycolors">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/conf-sis"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Procedencias</ion-title>
+    </ion-toolbar>
+
+    <div class="content_menu_h">
+      <img src="../../assets/icon/menu-h.svg" class="nav_img">
+    </div>
+
+  </nav>
+
+  <main>
+    <!--panel usuario-->
+    <div class="container1">
+      <!--foto de usuario-->
+      <div class="usuario">
+        <img src="../../assets/icon/ava-men2.svg">
+      </div>
+
+      <!--datos principales usuario-->
+      <header class="header">
+
+        <ng-container *ngIf="usuarioObservable | async as user">
+            <div class="div_nombre">
+                <label>{{user.nombres}}</label>
+            </div>
+
+            <div class="div_rol">
+                <p class="rol">{{user.rol}}</p>
+            </div>
+            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+        </ng-container>
+
+    </header>
+      <!--botón cerrar sesión-->
+      <div class="cerrar_sesion">
+        <img src="../../assets/icon/power.svg">
+      </div>
+    </div>
+
+    <div class="container2">
+      <div class="ventanas">
+        <div class="ven_nuevo">
+          <button [routerLink]="['/procedencias']">nuevo</button>
+        </div>
+        <div class="ven_modificar">
+          <button [routerLink]="['/modif-procedencias']">modificar</button>
+        </div>
+
+      </div>
+
+      <form action="post" class="form_ficha" autocomplete="off">
+
+        <div class="opciones">
+          <label for="fecha">Fecha creación:</label>
+          <input type="date" class="input_fecha">
+        </div>
+
+        <div class="opciones">
+          <label for="cod_rol">Código procedencia:</label>
+          <input type="text" id="cod_rol">
+        </div>
+
+        <div class="opciones">
+          <label for="nom_ficha">Nombre procedencia:</label>
+          <input type="text" id="nom_ficha">
+        </div>
+
+        <div class="botones">
+          <input type="submit" value="crear">
+          <input type="reset" value="reiniciar">
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>contacto:</p>
+    <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/whatsapp.svg" class="img_footer"></a>
+    <a href="https://www.google.com"><img src="../../assets/icon/email.svg" class="img_footer"></a>
+  </footer>
+
+</ion-content>
