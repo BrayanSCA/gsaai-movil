@@ -54,11 +54,13 @@
 
       </div>
 
-      <form action="post" class="form_ficha" autocomplete="off">
+      <form [formGroup]="formFichas" action="post" class="form_ficha" 
+      (submit)="enviarDatos()" autocomplete="off">
 
         <div class="opciones">
           <label for="fecha">Fecha creación:</label>
-          <input type="date" class="input_fecha">
+          <input type="date" name="fecha" class="input_fecha" 
+            style="background-color: #e4e4e4">
         </div>
 
         <div class="opciones">
@@ -72,7 +74,7 @@
         </div>
 
         <div class="botones">
-          <input type="submit" value="crear">
+          <input type="submit" value="crear" [disabled]="formFichas.invalid">
           <input type="reset" value="reiniciar">
         </div>
 
