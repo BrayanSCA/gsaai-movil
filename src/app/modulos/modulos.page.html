@@ -30,9 +30,10 @@
                                 <label>{{user.nombres}}</label>
                             </div>
 
-                            <div class="div_rol">
-                                <p class="rol">{{user.rol}}</p>
+                            <div class="div_rol" *ngIf="user.rol ==1; else lider">
+                               <label>administrador</label>
                             </div>
+                            <ng-template #lider>líder</ng-template>
                             <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
                         </ng-container>
 
@@ -44,15 +45,25 @@
                 </div>
                 <!--contenedor para ordenar solo los botones del panel-->
                 <div class="botones">
-                    <button [routerLink]="['/conf-sis']"><img src="../../assets/icon/engrane.svg">Configuración del
-                        sistema
-                    </button>
+
+                    <ng-container *ngIf="usuarioObservable | async as user">
+                        <button [routerLink]="['/conf-sis']" *ngIf="user.rol ==1"><img
+                                src="../../assets/icon/engrane.svg">Configuración del
+                            sistema
+                        </button>
+                    </ng-container>
+
                     <button [routerLink]="['/confi-perfil']"><img src="../../assets/icon/perfil.svg">Configuración de
                         perfil
                     </button>
-                    <button [routerLink]="['/confi-usuarios']"><img src="../../assets/icon/usuarios.svg">Configuración
-                        de usuarios
-                    </button>
+
+                    <ng-container *ngIf="usuarioObservable | async as user">
+                        <button [routerLink]="['/confi-usuarios']" *ngIf="user.rol ==1"><img
+                                src="../../assets/icon/usuarios.svg">Configuración
+                            de usuarios
+                        </button>
+                    </ng-container>
+
                     <button><img src="../../assets/icon/respaldo.svg">Copia de seguridad
                     </button>
                 </div>

@@ -15,12 +15,4 @@ export class ConexionService {
     const body = JSON.stringify({documento, contrasena})
     return this.http.post(this.url+`/consultaUsuarios.php`,body)
   }
-
-/*   consultaDatos(id:any, contrasena:any):Observable<any>{
-    return this.http.get(this.url+"/consultaUsuarios/"+id+"/"+contrasena)
-  }
- */
-  detalleUsuarios():Observable<any>{
-    return this.http.get(this.url+"/detalleUsuarios")
-  }
 }

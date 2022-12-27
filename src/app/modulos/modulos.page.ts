@@ -8,24 +8,26 @@ import { NavController } from '@ionic/angular';
   templateUrl: './modulos.page.html',
   styleUrls: ['./modulos.page.scss'],
 })
-export class ModulosPage implements OnInit {
-  usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor(public conexion:ConexionService, private navController: NavController,) { }
+export class ModulosPage implements OnInit  {
+  usuarioObservable=UsuarioData.getUsuarioObserver();
+
+  constructor(
+    public conexion:ConexionService, 
+    private navController: NavController,) { }
 
   ngOnInit() {
-    
-  /*   this.verDatos() */
+    this.permisoAdmin()
+
   }
 
   cerrarSesion(){
     UsuarioData.cerrarsesion()
   }
 
-/*   verDatos(){
-    this.conexion.detalleUsuarios().subscribe(
-      data=> {this.usuarios = data},
-      error=>{console.log(error)}
-    )
-  } */
+  permisoAdmin(){
+    if (UsuarioData.getUsuario().rol === 1)
+      UsuarioData.permisosUsuario(true)
+  }
+
 }
