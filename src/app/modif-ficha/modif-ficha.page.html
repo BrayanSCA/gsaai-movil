@@ -58,7 +58,7 @@
 
         <form action="get" class="form_buscar" autocomplete="off">
           <input type="search" id="buscar_rol" placeholder="código ficha">
-          <input type="submit" value="buscar">
+          <input type="submit" value="buscar" >
         </form>
 
         <form action="post" autocomplete="off">
@@ -84,6 +84,31 @@
           </div>
 
         </form>
+
+        <ion-list>
+
+          <div class="opciones">
+            <ion-label for="fecha">Fecha creación:</ion-label>
+            <ion-input [(ngModel)]="fecha" type="date" class="input_fecha" 
+              style="background-color: #e4e4e4"></ion-input>
+          </div>
+  
+          <div class="opciones">
+            <ion-label for="input_ficha">Código ficha:</ion-label>
+            <ion-input [(ngModel)]="cod_ficha" type="text" id="input_ficha"></ion-input>
+          </div>
+  
+          <div class="opciones">
+            <ion-label for="nom_ficha">Nombre ficha:</ion-label>
+            <ion-input [(ngModel)]="nom_ficha" type="text" id="nom_ficha"></ion-input>
+          </div>
+  
+          <div class="botones">
+            <input type="submit" value="crear" (click)="actualizarFicha()">
+            <input type="reset" value="reiniciar">
+          </div>
+
+        </ion-list>
       </div>
     </div>
   </main>

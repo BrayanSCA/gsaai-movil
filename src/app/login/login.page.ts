@@ -38,12 +38,7 @@ export class LoginPage implements OnInit {
     this.conexion.consultaDatos(documento, contrasena).subscribe(
       data => {
         const usuario = data.usuario
-        UsuarioData.iniciarSesion({...usuario, login: true})
-        /* if(data[0].di === dat.documento && data[0].contrasena === dat.contrasena) */
-          // Aquí debes iniciar sesión y crear una variable con el documento
-          /* this.router.navigate(['../modulos']) */
-          
-      
+        UsuarioData.iniciarSesion({...usuario, login: true})       
       }, error =>{console.log(error)}
     )   
   }

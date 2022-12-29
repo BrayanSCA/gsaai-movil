@@ -54,31 +54,50 @@
 
       </div>
 
-      <form [formGroup]="formFichas" action="post" class="form_ficha" 
-      (submit)="enviarDatos()" autocomplete="off">
+      <ion-list action="post" class="form_ficha" 
+      lines="full" autocomplete="off">
 
         <div class="opciones">
-          <label for="fecha">Fecha creación:</label>
-          <input type="date" name="fecha" class="input_fecha" 
-            style="background-color: #e4e4e4">
+          <ion-label for="fecha">Fecha creación:</ion-label>
+          <ion-input [(ngModel)]="fecha" type="date" class="input_fecha" 
+            style="background-color: #e4e4e4"></ion-input>
         </div>
 
         <div class="opciones">
-          <label for="input_ficha">Código ficha:</label>
-          <input type="text" id="input_ficha">
+          <ion-label for="input_ficha">Código ficha:</ion-label>
+          <ion-input [(ngModel)]="cod_ficha" type="text" id="input_ficha"></ion-input>
         </div>
 
         <div class="opciones">
-          <label for="nom_ficha">Nombre ficha:</label>
-          <input type="text" id="nom_ficha">
+          <ion-label for="nom_ficha">Nombre ficha:</ion-label>
+          <ion-input [(ngModel)]="nom_ficha" type="text" id="nom_ficha"></ion-input>
         </div>
 
         <div class="botones">
-          <input type="submit" value="crear" [disabled]="formFichas.invalid">
+          <input type="submit" value="crear" (click)="enviarDatos()">
           <input type="reset" value="reiniciar">
         </div>
+  
+      </ion-list>
 
-      </form>
+      <ion-list>
+        <ion-list-header>
+          Lista de Ficha
+        </ion-list-header>
+
+        <ion-item *ngFor="let ficha of fichas">
+          
+          <ion-label>
+            <h5>{{ficha.fecha}} - {{ficha.cod_ficha}}, {{ficha.nom_ficha}}</h5>
+          </ion-label>
+
+          <div class="item-note">
+            <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-ficha/',ficha.cod_ficha]"></ion-icon>
+            <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarFicha(ficha.cod_ficha)"></ion-icon>
+          </div>
+
+        </ion-item>
+      </ion-list>
     </div>
   </main>
 

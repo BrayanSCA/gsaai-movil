@@ -102,7 +102,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'modif-ficha',
+    path: 'modif-ficha/:cod_ficha',
     loadChildren: () => import('./modif-ficha/modif-ficha.module').then( m => m.ModifFichaPageModule)
   },
   {
