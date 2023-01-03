@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { error } from 'console';
+import { FichaService } from '../datos/usuario/ficha.service';
 import UsuarioData from '../datos/usuario/usuariodata';
-import { ConexionService } from '../services/conexion.service';
 
 @Component({
   selector: 'app-modif-ficha',
@@ -10,36 +10,48 @@ import { ConexionService } from '../services/conexion.service';
   styleUrls: ['./modif-ficha.page.scss'],
 })
 export class ModifFichaPage implements OnInit {
-  usuarioObservable=UsuarioData.getUsuarioObserver()
-  fecha:any;
-  cod_ficha:any;
-  nom_ficha:any;
+  usuarioObservable = UsuarioData.getUsuarioObserver()
+  fecha: any;
+  cod_ficha: any;
+  nom_ficha: any;
+  codactual: any;
+  form: FormGroup
+  isEdit: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private conexionService: ConexionService
+    private formBuilder: FormBuilder,
+    private fichaservice: FichaService
   ) {
-    this.route.params.subscribe((param:any)=>{
-      this.cod_ficha=param.cod_ficha;
-      console.log(this.cod_ficha);
-      this.verFicha(this.cod_ficha);
+    this.form = this.formBuilder.group({
+      fecha: ['', Validators.compose([Validators.required])],
+      cod_ficha: ['', Validators.compose([Validators.required])],
+      nom_ficha: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
-   }
+
+    this.route.params.subscribe((param: any) => {
+      this.cod_ficha = param.cod_ficha;
+      this.codactual = param.cod_ficha;
+      const fichaModificar = fichaservice.getFichas().fichas.find(ficha => ficha.cod_ficha === this.cod_ficha)
+      if (fichaModificar !== undefined) {
+        this.isEdit = true;
+        this.form.get("fecha")?.setValue(fichaModificar.fecha.split(' ')[0]);
+        this.form.get("cod_ficha")?.setValue(fichaModificar.cod_ficha);
+        this.form.get("nom_ficha")?.setValue(fichaModificar.nom_ficha);
+      }
+    })
+  }
 
   ngOnInit() {
   }
 
-  verFicha(cod_ficha:any){
-    this.conexionService.verFicha(cod_ficha).subscribe((res:any)=> {
-      console.log('SUCCESS', res);
-      let ficha = res[0];
-      this.fecha = ficha.fecha;
-      this.cod_ficha = ficha.cod_ficha;
-      this.nom_ficha = ficha.nom_ficha;
-    },(error:any)=> {
-      console.log('ERROR',error)
-    })
+  crearFicha() {
+    if (this.isEdit) {
+      this.fichaservice.modificarFicha(this.form, this.codactual);
+    } else {
+      this.fichaservice.guardarFicha(this.form);
+
+    }
   }
 
 }

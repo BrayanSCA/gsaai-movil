@@ -106,7 +106,7 @@ const routes: Routes = [
     loadChildren: () => import('./modif-ficha/modif-ficha.module').then( m => m.ModifFichaPageModule)
   },
   {
-    path: 'modif-roles',
+    path: 'modif-roles/:cod_rol',
     loadChildren: () => import('./modif-roles/modif-roles.module').then( m => m.ModifRolesPageModule)
   },
   {
@@ -142,7 +142,7 @@ const routes: Routes = [
     loadChildren: () => import('./modif-acti-secun/modif-acti-secun.module').then( m => m.ModifActiSecunPageModule)
   },
   {
-    path: 'modif-usuarios',
+    path: 'modif-usuarios/:di',
     loadChildren: () => import('./modif-usuarios/modif-usuarios.module').then( m => m.ModifUsuariosPageModule)
   },
   {

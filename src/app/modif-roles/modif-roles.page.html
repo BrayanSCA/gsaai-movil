@@ -45,43 +45,30 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/roles']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-roles']">modificar</button>
-        </div>
-
-      </div>
 
       <div class="form_roles">
 
-        <form action="get" class="form_buscar" autocomplete="off">
-          <input type="search" id="buscar_rol" placeholder="nombre rol">
-          <input type="submit" value="buscar">
-        </form>
-
-        <form action="post" autocomplete="off">
+        <form [formGroup]="form" autocomplete="off" (submit)="crearRol()">
 
           <div class="opciones">
-            <label for="fecha">Fecha modificación:</label>
-            <input type="date" class="input_fecha">
+            <ion-label for="fecha">Fecha creación:</ion-label>
+            <ion-input formControlName="fecha" type="date" name="fecha" class="input_fecha" 
+              style="background-color: #e4e4e4"></ion-input>
           </div>
-
+  
           <div class="opciones">
-            <label for="cod_rol">Código rol:</label>
-            <input type="text" id="cod_rol">
+            <ion-label for="input_ficha">Código rol:</ion-label>
+            <ion-input formControlName="cod_rol" type="text" name="cod_rol" id="input_rol"></ion-input>
           </div>
-
+  
           <div class="opciones">
-            <label for="nom_ficha">Nombre rol:</label>
-            <input type="text" id="nom_ficha">
+            <ion-label for="nom_ficha">Nombre rol:</ion-label>
+            <ion-input formControlName="nom_rol" type="text" name="nom_rol" id="nom_rol"></ion-input>
           </div>
-
+  
           <div class="botones">
-            <input type="submit" value="guardar">
-            <button class="btn_borrar">eliminar</button>
+            <input type="submit" [value]="isEdit?'modificar':'crear'">
+            <input type="reset" value="reiniciar">
           </div>
 
         </form>

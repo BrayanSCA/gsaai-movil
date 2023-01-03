@@ -45,70 +45,33 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/fichas']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-ficha']">modificar</button>
-        </div>
 
-      </div>
       <div class="form_ficha">
 
-        <form action="get" class="form_buscar" autocomplete="off">
-          <input type="search" id="buscar_rol" placeholder="código ficha">
-          <input type="submit" value="buscar" >
-        </form>
-
-        <form action="post" autocomplete="off">
-
-          <div class="opciones">
-            <label for="fecha">Fecha modificación:</label>
-            <input type="date" class="input_fecha">
-          </div>
-
-          <div class="opciones">
-            <label for="input_ficha">Código ficha:</label>
-            <input type="text" id="input_ficha">
-          </div>
-
-          <div class="opciones">
-            <label for="nom_ficha">Nombre ficha:</label>
-            <input type="text" id="nom_ficha">
-          </div>
-
-          <div class="botones">
-            <input type="submit" value="guardar">
-            <button class="btn_borrar">eliminar</button>
-          </div>
-
-        </form>
-
-        <ion-list>
+        <form [formGroup]="form" autocomplete="off" (submit)="crearFicha()">
 
           <div class="opciones">
             <ion-label for="fecha">Fecha creación:</ion-label>
-            <ion-input [(ngModel)]="fecha" type="date" class="input_fecha" 
+            <ion-input formControlName="fecha" type="date" class="input_fecha" 
               style="background-color: #e4e4e4"></ion-input>
           </div>
   
           <div class="opciones">
             <ion-label for="input_ficha">Código ficha:</ion-label>
-            <ion-input [(ngModel)]="cod_ficha" type="text" id="input_ficha"></ion-input>
+            <ion-input formControlName="cod_ficha" type="text" id="input_ficha"></ion-input>
           </div>
   
           <div class="opciones">
             <ion-label for="nom_ficha">Nombre ficha:</ion-label>
-            <ion-input [(ngModel)]="nom_ficha" type="text" id="nom_ficha"></ion-input>
+            <ion-input formControlName="nom_ficha" type="text" id="nom_ficha"></ion-input>
           </div>
   
           <div class="botones">
-            <input type="submit" value="crear" (click)="actualizarFicha()">
+            <input type="submit" [value]="isEdit?'modificar':'crear'"  >  
             <input type="reset" value="reiniciar">
           </div>
 
-        </ion-list>
+        </form>
       </div>
     </div>
   </main>

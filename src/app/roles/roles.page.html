@@ -1,7 +1,7 @@
 <ion-content>
 
   <nav>
-    
+
     <ion-toolbar color="mycolors">
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/conf-sis"></ion-back-button>
@@ -27,17 +27,17 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol">
+            <p class="rol">{{user.rol}}</p>
+          </div>
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -45,40 +45,36 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/roles']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-roles']">modificar</button>
-        </div>
 
-      </div>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button [routerLink]="['/modif-roles/',-1]">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 
-      <form action="post" class="form_ficha" autocomplete="off">
+      <ng-container *ngIf="roldataservice.getRolObserver() | async as rolData ">
+        <ion-list>
+          <ion-list-header>
+            Lista de Roles
+          </ion-list-header>
 
-        <div class="opciones">
-          <label for="fecha">Fecha creación:</label>
-          <input type="date" class="input_fecha">
-        </div>
 
-        <div class="opciones">
-          <label for="cod_rol">Código rol:</label>
-          <input type="text" id="cod_rol">
-        </div>
+          <ion-item *ngFor="let rol of rolData.roles">
 
-        <div class="opciones">
-          <label for="nom_ficha">Nombre rol:</label>
-          <input type="text" id="nom_ficha">
-        </div>
+            <ion-label>
+              <h5>{{rol.fecha}} - {{rol.cod_rol}}, {{rol.nom_rol}}</h5>
+            </ion-label>
 
-        <div class="botones">
-          <input type="submit" value="crear">
-          <input type="reset" value="reiniciar">
-        </div>
+            <div class="item-note">
+              <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-roles/',rol.cod_rol]"></ion-icon>
+              <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarRol(rol.cod_rol)"></ion-icon>
+            </div>
 
-      </form>
+          </ion-item>
+        </ion-list>
+      </ng-container>
     </div>
+
   </main>
 
   <footer>

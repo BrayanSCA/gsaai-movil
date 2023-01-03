@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { RoldataService } from '../datos/usuario/roldata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
 
 @Component({
@@ -8,12 +8,17 @@ import UsuarioData from '../datos/usuario/usuariodata';
   styleUrls: ['./roles.page.scss'],
 })
 export class RolesPage implements OnInit {
-  usuarioObservable=UsuarioData.getUsuarioObserver()
+  usuarioObservable=UsuarioData.getUsuarioObserver();
 
-  constructor(private router: Router) { }
+  constructor(
+    public roldataservice: RoldataService
+    ) {}
 
   ngOnInit() {
-
+    this.roldataservice.obtenerRoles()
   }
 
+  eliminarRol(cod_rol: string) {
+    this.roldataservice.eliminarRol(cod_rol)
+  }
 }

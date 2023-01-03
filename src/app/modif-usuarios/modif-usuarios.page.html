@@ -42,67 +42,60 @@
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
-    <!--cuadro nuevo, combinar, actualizar-->
+    
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/confi-usuarios']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-usuarios']">modificar</button>
-        </div>
-      </div>
-
-      <div class="div_usuario">
-        <label for="fecha">Fecha:</label>
-        <input type="date" class="input_fecha">
-      </div>
 
       <!--inicio formulario-->
-      <form action="post" class="mp_entrada" autocomplete="off">
+      <form [formGroup]="form" autocomplete="off" (submit)="crearUsuario()">
 
         <div class="opciones">
           <label for="documento">Documento:</label>
-          <input type="number" id="documento" placeholder="números, sin puntos">
+          <input formControlName="di" type="text" id="di" placeholder="números, sin puntos">
+        </div>
+
+        <div class="opciones">
+          <label for="fecha">Fecha creación:</label>
+          <input formControlName="fecha" type="date" id="fecha">
         </div>
 
         <div class="opciones">
           <label for="nombres">Nombres:</label>
-          <input type="text" id="nombres">
+          <input formControlName="nombres" type="text" id="nombres">
         </div>
 
         <div class="opciones">
           <label for="apellidos">Apellidos:</label>
-          <input type="text" id="apellidos">
+          <input formControlName="apellidos" type="text" id="apellidos">
         </div>
 
         <div class="opciones">
           <label for="correo">Correo:</label>
-          <input type="email" id="correo">
+          <input formControlName="correo" type="email" id="correo">
         </div>
 
         <div class="opciones">
           <label for="contrasena">Contraseña:</label>
-          <input type="text" id="contrasena">
+          <input formControlName="contrasena" type="text" id="contrasena">
         </div>
 
         <div class="opciones">
           <label for="rol">Rol:</label>
           <select id="rol">
-            <option selected>-Seleccionar rol-</option>
-            <option value="1">Rol usuario 1</option>
-            <option value="2">Rol usuario 2</option>
-            <option value="3">Rol usuario 3</option>
+            <ng-container *ngIf="roldataservice.getRolObserver() | async as rolData">
+              <option selected>-Seleccionar rol-</option>
+              <option formControlName="rol" value="{{rol.cod_rol}}" *ngFor="let rol of rolData.roles">{{rol.nom_rol}}</option>
+            </ng-container>
           </select>
         </div>
+
 
         <div class="opciones">
           <label for="ficha">Ficha:</label>
           <select id="ficha">
-            <option selected>-Seleccionar ficha-</option>
-            <option value="1">Ficha usuario 1</option>
-            <option value="2">Ficha usuario 2</option>
-            <option value="3">Ficha usuario 3</option>
+            <ng-container *ngIf="fichaservice.getFichaObserver() | async as fichaData ">
+              <option selected>-Seleccionar ficha-</option>
+              <option formControlName="ficha" value="{{ficha.cod_ficha}}" *ngFor="let ficha of fichaData.fichas">{{ficha.nom_ficha}}</option>
+            </ng-container>
           </select>
         </div>
 
@@ -116,10 +109,10 @@
           </label>
         </div>
 
-        <div class="div_enviar_datos">
-          <input type="submit" value="Enviar datos">
+        <div class="botones">
+          <input type="submit" [value]="isEdit?'modificar':'crear'">
+          <input type="reset" value="reiniciar">
         </div>
-
 
       </form>
     </div>

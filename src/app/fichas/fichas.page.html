@@ -1,7 +1,7 @@
 <ion-content>
 
   <nav>
-    
+
     <ion-toolbar color="mycolors">
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/conf-sis"></ion-back-button>
@@ -26,17 +26,17 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol">
+            <p class="rol">{{user.rol}}</p>
+          </div>
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -44,60 +44,34 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/fichas']" style="background-color: #e4e4e4; color: black;">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-ficha']" style="background-color: #e4e4e4; color: black;">modificar</button>
-        </div>
 
-      </div>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button [routerLink]="['/modif-ficha/',-1]">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 
-      <ion-list action="post" class="form_ficha" 
-      lines="full" autocomplete="off">
+      <ng-container *ngIf="fichaservice.getFichaObserver() | async as fichaData ">
+        <ion-list>
+          <ion-list-header>
+            Lista de Fichas
+          </ion-list-header>
 
-        <div class="opciones">
-          <ion-label for="fecha">Fecha creación:</ion-label>
-          <ion-input [(ngModel)]="fecha" type="date" class="input_fecha" 
-            style="background-color: #e4e4e4"></ion-input>
-        </div>
 
-        <div class="opciones">
-          <ion-label for="input_ficha">Código ficha:</ion-label>
-          <ion-input [(ngModel)]="cod_ficha" type="text" id="input_ficha"></ion-input>
-        </div>
+          <ion-item *ngFor="let ficha of fichaData.fichas">
 
-        <div class="opciones">
-          <ion-label for="nom_ficha">Nombre ficha:</ion-label>
-          <ion-input [(ngModel)]="nom_ficha" type="text" id="nom_ficha"></ion-input>
-        </div>
+            <ion-label>
+              <h5>{{ficha.fecha}} - {{ficha.cod_ficha}}, {{ficha.nom_ficha}}</h5>
+            </ion-label>
 
-        <div class="botones">
-          <input type="submit" value="crear" (click)="enviarDatos()">
-          <input type="reset" value="reiniciar">
-        </div>
-  
-      </ion-list>
+            <div class="item-note">
+              <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-ficha/',ficha.cod_ficha]"></ion-icon>
+              <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarFicha(ficha.cod_ficha)"></ion-icon>
+            </div>
 
-      <ion-list>
-        <ion-list-header>
-          Lista de Ficha
-        </ion-list-header>
-
-        <ion-item *ngFor="let ficha of fichas">
-          
-          <ion-label>
-            <h5>{{ficha.fecha}} - {{ficha.cod_ficha}}, {{ficha.nom_ficha}}</h5>
-          </ion-label>
-
-          <div class="item-note">
-            <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-ficha/',ficha.cod_ficha]"></ion-icon>
-            <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarFicha(ficha.cod_ficha)"></ion-icon>
-          </div>
-
-        </ion-item>
-      </ion-list>
+          </ion-item>
+        </ion-list>
+      </ng-container>
     </div>
   </main>
 
