@@ -110,7 +110,7 @@ const routes: Routes = [
     loadChildren: () => import('./modif-roles/modif-roles.module').then( m => m.ModifRolesPageModule)
   },
   {
-    path: 'modif-zona',
+    path: 'modif-zona/:cod_zona',
     loadChildren: () => import('./modif-zona/modif-zona.module').then( m => m.ModifZonaPageModule)
   },
   {

@@ -6,7 +6,7 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/conf-sis"></ion-back-button>
       </ion-buttons>
-      <ion-title>Crear Rol</ion-title>
+      <ion-title>Roles</ion-title>
     </ion-toolbar>
 
     <div class="content_menu_h">
@@ -31,9 +31,10 @@
             <label>{{user.nombres}}</label>
           </div>
 
-          <div class="div_rol">
-            <p class="rol">{{user.rol}}</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
           </div>
+          <ng-template #lider>líder</ng-template>
           <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 

@@ -15,7 +15,7 @@ export class ModifFichaPage implements OnInit {
   cod_ficha: any;
   nom_ficha: any;
   codactual: any;
-  form: FormGroup
+  form: FormGroup;
   isEdit: boolean = false;
 
   constructor(
@@ -50,7 +50,6 @@ export class ModifFichaPage implements OnInit {
       this.fichaservice.modificarFicha(this.form, this.codactual);
     } else {
       this.fichaservice.guardarFicha(this.form);
-
     }
   }
 

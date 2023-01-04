@@ -46,7 +46,7 @@ export class ModifUsuariosPage implements OnInit {
     this.route.params.subscribe((param: any) =>{
       this.di = param.di;
       this.codactual = param.di;
-      const usuarioModificar = usuarioservice.getUsuarios().usuarios.find(usuario => this.rol.di === this.di)
+      const usuarioModificar = usuarioservice.getUsuarios().usuarios.find(usuario => usuario.di === this.di)
       if (usuarioModificar !== undefined) {
         this.isEdit = true;
         this.form.get("di")?.setValue(usuarioModificar.di);
@@ -62,6 +62,8 @@ export class ModifUsuariosPage implements OnInit {
    }
 
   ngOnInit() {
+    this.roldataservice.obtenerRoles()
+    this.fichaservice.obtenerFichas()
   }
 
   crearUsuario() {

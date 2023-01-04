@@ -25,17 +25,18 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">

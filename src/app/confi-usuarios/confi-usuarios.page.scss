@@ -79,6 +79,10 @@ ion-back-button {
     padding: 1em;
 }
 
+.caja_tabla {
+    overflow: scroll
+}
+
 table {
     width: 100%;
     text-align: center;
@@ -89,6 +93,11 @@ table {
 th {
     background-color: #2c4018;
     color: white;
+    padding: 0px 5px;
+}
+
+td {
+    padding: 0px 5px;
 }
 
 tr:nth-child(even) {

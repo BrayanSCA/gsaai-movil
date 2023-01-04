@@ -27,17 +27,18 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -45,46 +46,32 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/zonas']">nuevo</button>
+
+      <form [formGroup]="form" autocomplete="off" (submit)="crearZona()">
+
+        <div class="opciones">
+          <ion-label for="fecha">Fecha creación:</ion-label>
+          <ion-input formControlName="fecha" type="date" class="input_fecha"
+            style="background-color: #e4e4e4"></ion-input>
         </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-zona']">modificar</button>
+
+        <div class="opciones">
+          <ion-label for="input_ficha">Código ficha:</ion-label>
+          <ion-input formControlName="cod_zona" type="text" id="input_ficha"></ion-input>
         </div>
 
-      </div>
-      <div class="form_ficha">
+        <div class="opciones">
+          <ion-label for="nom_zona">Nombre zona:</ion-label>
+          <ion-input formControlName="nom_zona" type="text" id="nom_zona"></ion-input>
+        </div>
 
-        <form action="get" class="form_buscar" autocomplete="off">
-          <input type="search" id="buscar_rol" placeholder="nombre zona">
-          <input type="submit" value="buscar">
-        </form>
+        <div class="botones">
+          <input type="submit" [value]="isEdit?'modificar':'crear'">
+          <input type="reset" value="reiniciar">
+        </div>
 
-        <form action="post" autocomplete="off">
+      </form>
 
-          <div class="opciones">
-            <label for="fecha">Fecha modificación:</label>
-            <input type="date" class="input_fecha">
-          </div>
-
-          <div class="opciones">
-            <label for="cod_zona">Código zona:</label>
-            <input type="text" id="cod_zona">
-          </div>
-
-          <div class="opciones">
-            <label for="nom_zona">Nombre zona:</label>
-            <input type="text" id="nom_zona">
-          </div>
-
-          <div class="botones">
-            <input type="submit" value="guardar">
-            <button class="btn_borrar">eliminar</button>
-          </div>
-
-        </form>
-      </div>
     </div>
   </main>
 

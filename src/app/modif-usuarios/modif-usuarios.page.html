@@ -80,10 +80,10 @@
 
         <div class="opciones">
           <label for="rol">Rol:</label>
-          <select id="rol">
+          <select formControlName="rol" id="rol">
             <ng-container *ngIf="roldataservice.getRolObserver() | async as rolData">
-              <option selected>-Seleccionar rol-</option>
-              <option formControlName="rol" value="{{rol.cod_rol}}" *ngFor="let rol of rolData.roles">{{rol.nom_rol}}</option>
+              <option>-Seleccionar rol-</option>
+              <option value="{{rol.cod_rol}}" *ngFor="let rol of rolData.roles">{{rol.nom_rol}}</option>
             </ng-container>
           </select>
         </div>
@@ -91,10 +91,10 @@
 
         <div class="opciones">
           <label for="ficha">Ficha:</label>
-          <select id="ficha">
+          <select formControlName="ficha"  id="ficha">
             <ng-container *ngIf="fichaservice.getFichaObserver() | async as fichaData ">
-              <option selected>-Seleccionar ficha-</option>
-              <option formControlName="ficha" value="{{ficha.cod_ficha}}" *ngFor="let ficha of fichaData.fichas">{{ficha.nom_ficha}}</option>
+              <option>-Seleccionar ficha-</option>
+              <option value="{{ficha.cod_ficha}}" *ngFor="let ficha of fichaData.fichas">{{ficha.nom_ficha}}</option>
             </ng-container>
           </select>
         </div>

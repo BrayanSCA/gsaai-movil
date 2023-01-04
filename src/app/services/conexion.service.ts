@@ -79,4 +79,45 @@ export class ConexionService {
     return this.http.put(this.url+'/usuarioUpdate.php',dataUser);
   }
 
+  crearZona(data:any):Observable<any>{
+    return this.http.post(this.url+`/zonasCreate.php`,data);
+  }  
+
+  verZonas(){
+    return this.http.get(this.url+`/zonasRead.php`);
+  }
+
+  eliminarZona(cod_zona:string){
+    return this.http.delete(this.url+'/zonasDelete.php?cod_zona='+cod_zona);
+  }
+
+  verZona(cod_zona:string){
+    return this.http.get(this.url+'/zonasGet.php?cod_zona='+cod_zona);
+  }
+
+  actualizarZona(datosZona:any){
+    const dataZona = JSON.stringify(datosZona);
+    return this.http.put(this.url+'/zonasUpdate.php',dataZona);
+  }
+
+  crearMp(data:any):Observable<any>{
+    return this.http.post(this.url+`/mpCreate.php`,data);
+  }  
+
+  verMps(){
+    return this.http.get(this.url+`/mpRead.php`);
+  }
+
+  eliminarMp(cod_mp:string){
+    return this.http.delete(this.url+'/mpDelete.php?cod_mp='+cod_mp);
+  }
+
+  verMp(cod_mp:string){
+    return this.http.get(this.url+'/mpGet.php?cod_mp='+cod_mp);
+  }
+
+  actualizarMp(datosMp:any){
+    const dataMp = JSON.stringify(datosMp);
+    return this.http.put(this.url+'/mpUpdate.php',dataMp);
+  }
 }

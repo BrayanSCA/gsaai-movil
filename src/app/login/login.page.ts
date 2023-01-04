@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ConexionService } from '../services/conexion.service';
-import { Iloginform } from './models/datos';
 import UsuarioData from '../datos/usuario/usuariodata'
+import { Iloginform } from './models/datos';
 
 
 
