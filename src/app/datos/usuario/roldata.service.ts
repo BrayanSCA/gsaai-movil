@@ -58,6 +58,7 @@ export class RoldataService {
     rol["codactual"] = codactual
     this.conexionService.actualizarRol(rol).subscribe((res: any)=>{
       console.log("exitoso");
+      alert('Rol modificado correctamente');
       this.obtenerRoles();
     },(error:any)=> {
       console.log('ERROR', error)

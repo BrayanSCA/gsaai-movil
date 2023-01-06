@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InsumoService } from '../datos/usuario/insumodata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
 
 @Component({
@@ -9,9 +10,15 @@ import UsuarioData from '../datos/usuario/usuariodata';
 export class ListaInsumosPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor() { }
+  constructor(
+    public insumodataservice: InsumoService
+  ) { }
 
   ngOnInit() {
+    this.insumodataservice.obtenerInsumos();
   }
 
+  eliminarInsumo(cod_insumo: string) {
+    this.insumodataservice.eliminarInsumo(cod_insumo)
+  }
 }

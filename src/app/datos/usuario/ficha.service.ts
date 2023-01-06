@@ -58,6 +58,7 @@ export class FichaService {
       ficha["codactual"] = codactual 
       this.conexionService.actualizarFicha(ficha).subscribe((res: any) => {
         console.log("exitoso");
+        alert('Ficha modificada correctamente');
         this.obtenerFichas();
       }, (error: any) => {
         console.log('ERROR', error)

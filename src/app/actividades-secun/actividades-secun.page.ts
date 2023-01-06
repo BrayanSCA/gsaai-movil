@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecundariaService } from '../datos/usuario/actisecundata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
 
 
@@ -11,9 +12,15 @@ export class ActividadesSecunPage implements OnInit {
   
 usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor() { }
+  constructor(
+    public actisecundataservice: SecundariaService
+  ) { }
 
   ngOnInit() {
+    this.actisecundataservice.obtenerSecundarias()
   }
 
+  eliminarSecundaria(cod_secund: string) {
+    this.actisecundataservice.eliminarSecundaria(cod_secund)
+  }
 }

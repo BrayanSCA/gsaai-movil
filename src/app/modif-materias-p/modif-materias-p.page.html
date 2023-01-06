@@ -27,17 +27,20 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
+
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -45,50 +48,37 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/materias-primas']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-materias-p']">modificar</button>
-        </div>
+      
+      <div class="form_mp">
 
-      </div>
-      <div class="form_ficha">
-
-        <form action="get" class="form_buscar" autocomplete="off">
-          <input type="search" id="buscar_rol" placeholder="nombre materia prima">
-          <input type="submit" value="buscar">
-        </form>
-
-        <form action="post" autocomplete="off">
+        <form [formGroup]="form" autocomplete="off" (submit)="crearMp()">
 
           <div class="opciones">
-            <label for="fecha">Fecha modificación:</label>
-            <input type="date" class="input_fecha">
+            <ion-label for="input_mp">Código mp:</ion-label>
+            <ion-input formControlName="cod_mp" type="text" id="input_mp"></ion-input>
           </div>
 
           <div class="opciones">
-            <label for="cod_zona">Código m/p:</label>
-            <input type="text" id="cod_zona">
+            <ion-label for="in_nombre_mp">Nombre mp:</ion-label>
+            <ion-input formControlName="nombre_mp" type="text" id="in_nombre_mp"></ion-input>
           </div>
 
           <div class="opciones">
-            <label for="nom_zona">Nombre m/p:</label>
-            <input type="text" id="nom_zona">
+            <ion-label for="in_stock">Peso Kg:</ion-label>
+            <ion-input formControlName="stock" type="text" id="in_stock"></ion-input>
           </div>
 
           <div class="opciones">
-            <label for="relacion-cn">Relación C/N:</label>
-            <input type="text" id="relacion-cn">
+            <ion-label for="in_relacion_cn">Relacion C/N:</ion-label>
+            <ion-input formControlName="relacion_cn" type="text" id="in_relacion_cn"></ion-input>
           </div>
 
           <div class="botones">
-            <input type="submit" value="guardar">
-            <button class="btn_borrar">eliminar</button>
+            <input type="submit" [value]="isEdit?'modificar':'crear'">
+            <input type="reset" value="reiniciar">
           </div>
 
-        </form>
+          </form>
       </div>
     </div>
   </main>

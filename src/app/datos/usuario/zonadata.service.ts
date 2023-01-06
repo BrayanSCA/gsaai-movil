@@ -58,6 +58,7 @@ export class ZonaService {
       zona["codactual"] = codactual 
       this.conexionService.actualizarZona(zona).subscribe((res: any) => {
         console.log("exitoso");
+        alert('Zona modificada correctamente');
         this.obtenerZonas();
       }, (error: any) => {
         console.log('ERROR', error)

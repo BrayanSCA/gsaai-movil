@@ -27,17 +27,19 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -45,43 +47,19 @@
     </div>
 
     <div class="container2">
-      <div class="ventanas">
-        <div class="ven_nuevo">
-          <button [routerLink]="['/procedencias']">nuevo</button>
-        </div>
-        <div class="ven_modificar">
-          <button [routerLink]="['/modif-procedencias']">modificar</button>
-        </div>
 
-      </div>
+      <div class="form_procedencia">
 
-      <div class="form_roles">
-
-        <form action="get" class="form_buscar" autocomplete="off">
-          <input type="search" id="buscar_rol" placeholder="nombre procedencia">
-          <input type="submit" value="buscar">
-        </form>
-
-        <form action="post" autocomplete="off">
+        <form [formGroup]="form" autocomplete="off" (submit)="crearProcedencia()">
 
           <div class="opciones">
-            <label for="fecha">Fecha modificación:</label>
-            <input type="date" class="input_fecha">
-          </div>
-
-          <div class="opciones">
-            <label for="cod_rol">Código procedencia:</label>
-            <input type="text" id="cod_rol">
-          </div>
-
-          <div class="opciones">
-            <label for="nom_ficha">Nombre procedencia:</label>
-            <input type="text" id="nom_ficha">
+            <ion-label for="in_nom_proce">Nombre procedencia:</ion-label>
+            <ion-input formControlName="nom_procedencia" type="text" id="in_nom_proce"></ion-input>
           </div>
 
           <div class="botones">
-            <input type="submit" value="guardar">
-            <button class="btn_borrar">eliminar</button>
+            <input type="submit" [value]="isEdit?'modificar':'crear'">
+            <input type="reset" value="reiniciar">
           </div>
 
         </form>

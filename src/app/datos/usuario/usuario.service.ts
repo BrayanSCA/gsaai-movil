@@ -58,6 +58,7 @@ export class UsuarioService {
       usuario["codactual"] = codactual 
       this.conexionService.actualizarUsuario(usuario).subscribe((res: any) => {
         console.log("exitoso");
+        alert('Usuario modificado correctamente');
         this.obtenerUsuarios();
       }, (error: any) => {
         console.log('ERROR', error)

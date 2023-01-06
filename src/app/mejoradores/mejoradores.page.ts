@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MejoradorService } from '../datos/usuario/mejoradordata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
 
 @Component({
@@ -9,9 +10,15 @@ import UsuarioData from '../datos/usuario/usuariodata';
 export class MejoradoresPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor() { }
+  constructor(
+    public mejoradordataservice: MejoradorService
+  ) { }
 
   ngOnInit() {
+    this.mejoradordataservice.obtenerMejoradores()
   }
 
+  eliminarMejorador(cod_mejorador: string) {
+    this.mejoradordataservice.eliminarMejorador(cod_mejorador)
+  }
 }

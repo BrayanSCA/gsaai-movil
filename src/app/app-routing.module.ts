@@ -114,31 +114,23 @@ const routes: Routes = [
     loadChildren: () => import('./modif-zona/modif-zona.module').then( m => m.ModifZonaPageModule)
   },
   {
-    path: 'modif-materias-p',
+    path: 'modif-materias-p/:cod_mp',
     loadChildren: () => import('./modif-materias-p/modif-materias-p.module').then( m => m.ModifMateriasPPageModule)
   },
   {
-    path: 'modif-insumos',
+    path: 'modif-insumos/:cod_insumo',
     loadChildren: () => import('./modif-insumos/modif-insumos.module').then( m => m.ModifInsumosPageModule)
   },
   {
-    path: 'modif-procedencias',
+    path: 'modif-procedencias/:cod_procedencia',
     loadChildren: () => import('./modif-procedencias/modif-procedencias.module').then( m => m.ModifProcedenciasPageModule)
   },
   {
-    path: 'tipo-insumos',
-    loadChildren: () => import('./tipo-insumos/tipo-insumos.module').then( m => m.TipoInsumosPageModule)
-  },
-  {
-    path: 'modif-tipo-insu',
-    loadChildren: () => import('./modif-tipo-insu/modif-tipo-insu.module').then( m => m.ModifTipoInsuPageModule)
-  },
-  {
-    path: 'modif-mejoradores',
+    path: 'modif-mejoradores/:cod_mejoradores',
     loadChildren: () => import('./modif-mejoradores/modif-mejoradores.module').then( m => m.ModifMejoradoresPageModule)
   },
   {
-    path: 'modif-acti-secun',
+    path: 'modif-acti-secun/:cod_secund',
     loadChildren: () => import('./modif-acti-secun/modif-acti-secun.module').then( m => m.ModifActiSecunPageModule)
   },
   {

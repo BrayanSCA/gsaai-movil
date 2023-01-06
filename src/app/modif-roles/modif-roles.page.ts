@@ -14,7 +14,7 @@ export class ModifRolesPage implements OnInit {
   fecha: any;
   cod_rol: any;
   nom_rol: any;
-  codactual: any
+  codactual: any;
   form: FormGroup;
   isEdit: boolean = false;
 

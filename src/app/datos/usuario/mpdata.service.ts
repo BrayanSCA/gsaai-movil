@@ -58,6 +58,7 @@ export class MpService {
     mp["codactual"] = codactual
     this.conexionService.actualizarMp(mp).subscribe((res: any)=>{
       console.log("exitoso");
+      alert('Materia prima modificada correctamente');
       this.obtenerMps();
     },(error:any)=> {
       console.log('ERROR', error)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProcedenciaService } from '../datos/usuario/procedenciadata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
 
 @Component({
@@ -9,9 +10,17 @@ import UsuarioData from '../datos/usuario/usuariodata';
 export class ProcedenciasPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor() { }
+  constructor(
+    public procedenciadataservice: ProcedenciaService
+  ) { }
 
   ngOnInit() {
+    this.procedenciadataservice.obtenerProcedencias();
+    console.log(this.procedenciadataservice.obtenerProcedencias())
+  }
+
+  eliminarProcedencia(cod_procedencia:string) {
+    this.procedenciadataservice.eliminarProcedencia(cod_procedencia)
   }
 
 }
