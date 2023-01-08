@@ -26,17 +26,19 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -45,19 +47,21 @@
 
     <!--cuadro entradas y salidas-->
     <div class="container2">
-      <div class="cod_bitacora">
-        <label for="input_bitacora"># Bitácora:</label>
-        <input type="text" id="input_bitacora">
-        <input type="date" class="input_fecha">
-      </div>
-      <form action="post" class="mp_entrada" autocomplete="off">
+
+      <form [formGroup]="form" autocomplete="off" (submit)="crearBitacora()">
 
         <div class="opciones">
-          <label for="responsable" class="label_actividad">Responsable:</label>
-          <select name="" id="responsable">
-            <option value="1" selected>-Seleccione usuario-</option>
-            <option value="2">Usuario 1</option>
-            <option value="3">Usuario 2</option>
+          <label for="in_fecha">Fecha:</label>
+          <input formControlName="fecha" type="date">
+        </div>
+
+        <div class="opciones">
+          <label for="in_usuario">Responsable:</label>
+          <select formControlName="responsable" id="in_usuario">
+            <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+              <option>-Seleccionar responsable-</option>
+              <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}}, {{usuario.apellidos}}</option>
+            </ng-container>
           </select>
         </div>
 
@@ -66,7 +70,7 @@
           <label for="agregar_rutinaria" class="label_titulo">Actividades rutinarias</label>
 
           <div class="caja_lista">
-            <select name="" id="agregar_rutinaria">
+            <select formControlName="rutinarias" id="agregar_rutinaria">
               <option value="1" selected>-Seleccione actividad-</option>
               <option value="2">Bitácora</option>
               <option value="3">Pedido insumos</option>
@@ -104,21 +108,19 @@
 
         <!--agregar actividades no rutinarias-->
         <div class="">
-          <label for="agregar_norutinaria" class="label_titulo">Actividades no rutinarias</label>
+          <label for="in_norutinaria" class="label_titulo">Actividades no rutinarias</label>
 
-          <div class="caja_lista">
-            <select name="" id="agregar_norutinaria">
-              <option value="1" selected>-Seleccione actividad-</option>
-              <option value="2">Limpiar canales</option>
-              <option value="3">Barrer planchón</option>
-              <option value="4">Zarandear pila</option>
-              <option value="5">Charlas capacitación</option>
-              <option value="6">Aseo general</option>
+          <div class="opciones">
+            <select formControlName="no_rutinarias" id="in_norutinaria">
+              <ng-container *ngIf="secundariaservice.getSecundariaObserver() | async as secundariaData">
+                <option>-Seleccionar responsable-</option>
+                <option value="{{secundaria.cod_secund}}" *ngFor="let secundaria of secundariaData.secundarias">{{secundaria.nom_acti_sec}}</option>
+              </ng-container>
             </select>
+          </div>
 
             <button class="btn_agregar">Agregar</button>
           </div>
-        </div>
 
         <div class="content_table">
           <table>
@@ -143,7 +145,7 @@
 
         <div class="opciones">
           <label for="input_operarios"># Operarios:</label>
-          <input type="number" id="input_operarios">
+          <input formControlName="num_operarios" type="number" id="input_operarios">
         </div>
 
         <div class="opciones">
@@ -152,15 +154,16 @@
         </div>
 
         <div class="">
-          <label for="agregar_insumo" class="label_titulo">Insumos recibidos:</label>
-          <select name="" id="agregar_insumo">
-            <option value="1" selected>-Seleccione insumo-</option>
-            <option value="2">Insumo 1</option>
-            <option value="3">Insumo 2</option>
-            <option value="4">Insumo 3</option>
-            <option value="5">Insumo 4</option>
-            <option value="6">Insumo 5</option>
-          </select>
+          <label for="in_insumo" class="label_titulo">Insumos recibidos:</label>
+          <div class="opciones">
+            
+            <select formControlName="insumos" id="in_insumo">
+              <ng-container *ngIf="insumoservice.getInsumoObserver() | async as insumoData">
+                <option>-Seleccionar responsable-</option>
+                <option value="{{insumo.cod_insumo}}" *ngFor="let insumo of insumoData.insumos">{{insumo.nom_insumo}}</option>
+              </ng-container>
+            </select>
+          </div>
 
           <div class="opciones">
             <label for="cantidad">Cantidad:</label>
@@ -199,18 +202,18 @@
 
         <div class="content_input_observaciones">
           <label for="observaciones" class="label_observaciones">Observaciones:</label>
-          <textarea name="observaciones" id="observaciones" maxlength="200" cols="30" rows="10"
+          <textarea formControlName="observa" id="observaciones" maxlength="200" cols="30" rows="10"
             placeholder="max. 200 caracteres"></textarea>
         </div>
 
 
-        <div class="div_img_mp">
+<!--         <div class="div_img_mp">
           <img src="../../assets/icon/mp.svg" class="img_mp">
         </div>
         <div class="div_subir_foto">
           <input type="file">
           <p>evidencia</p>
-        </div>
+        </div> -->
 
         <div class="div_enviar_datos">
           <input type="submit" value="Enviar datos">

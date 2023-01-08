@@ -54,13 +54,14 @@
             <button [routerLink]="['/mp-entrada']">salidas</button>
           </div>
       </div>
-
-      <div class="cod_entrada">
-        <label># Entrada:</label><input type="text" id="input_entrada">
-        <input type="date" class="input_fecha">
-      </div>
       
       <form action="post" class="mp_entrada">
+
+        <div class="opciones">
+          <ion-label for="fecha">Fecha creación:</ion-label>
+          <ion-input formControlName="fecha" type="date" class="input_fecha"
+            style="background-color: #e4e4e4"></ion-input>
+        </div>
         
         <div class="content_input">
           <label class="label_nombre">Nombre mp: </label>
@@ -77,6 +78,16 @@
           <input type="text" class="input_peso">
         </div>
 
+<!--         <div class="opciones">
+          <label for="rol">Rol:</label>
+          <select formControlName="procedencia" id="rol">
+            <ng-container *ngIf="roldataservice.getRolObserver() | async as rolData">
+              <option>-Seleccionar rol-</option>
+              <option value="{{rol.cod_rol}}" *ngFor="let rol of rolData.roles">{{rol.nom_rol}}</option>
+            </ng-container>
+          </select>
+        </div> -->
+
         <div class="content_input">
           <label for="" class="label_procedencia">Procedencia: </label>
           <select id="select_procedencia">
@@ -85,11 +96,6 @@
             <option>Procedencia 2</option>
             <option>Procedencia 3</option>
           </select>
-        </div>
-
-        <div class="content_input">
-          <label for="" class="label_stock">Stock: </label>
-          <input type="text" class="input_stock" placeholder="und Kg">
         </div>
 
         <div class="content_input">

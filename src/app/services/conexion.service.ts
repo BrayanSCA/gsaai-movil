@@ -225,4 +225,52 @@ export class ConexionService {
     const dataEntradaMp = JSON.stringify(datosEntradaMp);
     return this.http.put(this.url+'/EntradaMpUpdate.php',dataEntradaMp);
   }
+
+  crearPilaNueva(data:any):Observable<any>{
+    return this.http.post(this.url+`/pilaNuevaCreate.php`,data);
+  } 
+  
+  verPilasNuevas(){
+    return this.http.get(this.url+`/pilaNuevaRead.php`);
+  }
+
+  verPilaNueva(cod_conf_pila:string){
+    return this.http.get(this.url+'/pilaNuevaGet.php?cod_conf_pila='+cod_conf_pila);
+  }
+
+  crearPilaActualizar(data:any):Observable<any>{
+    return this.http.post(this.url+`/pilaActualizarCreate.php`,data);
+  } 
+  
+  verPilasActualizar(){
+    return this.http.get(this.url+`/pilaActualizarRead.php`);
+  }
+
+  verPilaActualizar(cod_actualiza:string){
+    return this.http.get(this.url+'/pilaActualizarGet.php?cod_actualiza='+cod_actualiza);
+  }
+
+  crearBitacora(data:any):Observable<any>{
+    return this.http.post(this.url+`/bitacoraCreate.php`,data);
+  } 
+  
+  verBitacoras(){
+    return this.http.get(this.url+`/bitacoraRead.php`);
+  }
+
+  verBitacora(cod_bita:string){
+    return this.http.get(this.url+'/bitacoraGet.php?cod_bita='+cod_bita);
+  }
+
+  crearAbonoEntrada(data:any):Observable<any>{
+    return this.http.post(this.url+`/abonoEntradaCreate.php`,data);
+  } 
+  
+  verAbonoEntradas(){
+    return this.http.get(this.url+`/abonoEntradaRead.php`);
+  }
+
+  verAbonoEntrada(cod_abono:string){
+    return this.http.get(this.url+'/abonoEntradaGet.php?cod_abono='+cod_abono);
+  }
 }

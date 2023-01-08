@@ -26,17 +26,19 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -53,49 +55,53 @@
         </div>
       </div>
 
-      <div class="cod_entrada">
-        <label># Entrada:</label>
-        <input type="text" id="input_entrada" placeholder="1">
-        <input type="date" class="input_fecha">
-      </div>
-
       <!--inicio formulario-->
-      <form action="post" class="mp_entrada" autocomplete="off">
+      <form [formGroup]="form" class="mp_entrada" autocomplete="off" (submit)="crearAbonoEntrada()">
 
-        <div class="content_input">
-          <label for="select_usuario">Responsable:</label>
-          <select id="select_usuario">
-            <option selected>-Seleccionar usuario-</option>
-            <option value="1">Usuario ejemplo 1</option>
-            <option value="2">Usuario ejemplo 2</option>
-            <option value="3">Usuario ejemplo 3</option>
+        <div class="opciones">
+          <label>Fecha:</label>
+          <input formControlName="fecha" type="date" class="fecha">
+        </div>
+
+        <div class="opciones">
+          <label for="in_usuario">Responsable:</label>
+          <select formControlName="responsable" id="in_usuario">
+            <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+              <option>-Seleccionar responsable-</option>
+              <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}} {{usuario.apellidos}}</option>
+            </ng-container>
           </select>
         </div>
 
-        <div class="content_input">
-          <label for="select_pila"># Pila:</label>
-          <select id="select_pila">
-            <option selected>-Seleccionar # Pila-</option>
-            <option value="1">Pila # 1</option>
-            <option value="2">Pila # 2</option>
-            <option value="3">Pila # 3</option>
+        <div class="opciones">
+          <label for="in_zona">Zona:</label>
+          <select id="in_zona">
+            <ng-container *ngIf="zonaservice.getZonaObserver() | async as zonaData">
+              <option>-Seleccionar zona-</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData.zonas">{{zona.nom_zona}}</option>
+            </ng-container>
           </select>
         </div>
 
-        <div class="content_input">
+<!--         <div class="opciones">
           <label for="select_almacen">Almacen</label>
           <select id="select_almacen">
             <option selected>-Seleccionar almacen-</option>
             <option value="1">Almacen ejemplo 1</option>
           </select>
+        </div> -->
+
+        <div class="opciones">
+          <label for="input_lote">Cod. lote:</label>
+          <input formControlName="lote_abono" type="text" id="input_lote">
         </div>
 
-        <div class="content_input">
-          <label for="input_lote">cod. lote:</label>
-          <input type="text" id="input_lote">
+        <div class="opciones">
+          <label for="in_kilos">Kilos abono:</label>
+          <input formControlName="kilos_abono" type="number" id="in_kilos">
         </div>
 
-        <div class="content_input_eleccion">
+        <div class="opciones">
           <label for="input_mover">¿Agrega mejoradores?</label>
           <label for="">Si
             <input type="radio" name="respuesta">
@@ -105,29 +111,34 @@
           </label>
         </div>
 
-        <div class="content_input">
-          <label for="select_pila">¿Cúales?</label>
-          <select id="select_pila">
-            <option selected>-Seleccionar mejorador-</option>
-            <option value="1">mejorador ejemplo # 1</option>
-            <option value="2">mejorador ejemplo # 2</option>
-            <option value="3">mejorador ejemplo # 3</option>
+        <div class="opciones">
+          <label for="in_mejorador">¿Cúales?:</label>
+          <select formControlName="mejorador" id="in_mejorador">
+            <ng-container *ngIf="mejoradorservice.getMejoradorObserver() | async as mejoradorData">
+              <option>-Seleccionar mejorador-</option>
+              <option value="{{mejorador.cod_mejorador}}" *ngFor="let mejorador of mejoradorData.mejoradores">{{mejorador.nom_mejorador}}</option>
+            </ng-container>
           </select>
         </div>
 
-        <div class="content_input_observaciones">
-          <label for="observaciones" class="label_observaciones">Observaciones: </label>
-          <textarea name="observaciones" id="observaciones" maxlength="200" cols="30" rows="10"
-            placeholder="max. 200 caracteres"></textarea>
+        <div class="opciones">
+          <label>Cantidad:</label>
+          <input formControlName="cantidad" type="number">
         </div>
 
+        <div class="opciones">
+          <label for="observaciones" class="label_observaciones">Observaciones: </label>
+          <textarea formControlName="observa" id="observaciones" maxlength="200" cols="30" rows="10"
+            placeholder="max. 200 caracteres"></textarea>
+        </div>
+<!-- 
         <div class="div_img_pila">
           <img src="../../assets/icon/mp.svg" class="img_pila">
         </div>
         <div class="div_subir_foto">
           <input type="file">
           <p>subir foto abono</p>
-        </div>
+        </div> -->
 
         <div class="div_enviar_datos">
           <input type="submit" value="Enviar datos">
