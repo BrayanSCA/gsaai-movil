@@ -273,4 +273,28 @@ export class ConexionService {
   verAbonoEntrada(cod_abono:string){
     return this.http.get(this.url+'/abonoEntradaGet.php?cod_abono='+cod_abono);
   }
+
+  crearAbonoSalida(data:any):Observable<any>{
+    return this.http.post(this.url+`/abonoSalidaCreate.php`,data);
+  } 
+  
+  verAbonoSalidas(){
+    return this.http.get(this.url+`/abonoSalidaRead.php`);
+  }
+
+  verAbonoSalida(cod_sali_abo:string){
+    return this.http.get(this.url+'/abonoSalidaGet.php?cod_sali_abo='+cod_sali_abo);
+  }
+
+  crearEntradaInsumo(data:any):Observable<any>{
+    return this.http.post(this.url+`/entregaInsumoCreate.php`,data);
+  } 
+  
+  verEntradaInsumos(){
+    return this.http.get(this.url+`/entregaInsumoRead.php`);
+  }
+
+  verEntradaInsumo(cod_entra_insu:string){
+    return this.http.get(this.url+'/entregaInsumoGet.php?cod_entra_insu='+cod_entra_insu);
+  }
 }

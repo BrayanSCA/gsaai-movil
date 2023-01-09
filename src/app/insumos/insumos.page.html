@@ -25,17 +25,19 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
+          <div class="div_nombre">
+            <label>{{user.nombres}}</label>
+          </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
+          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
       <div class="cerrar_sesion">
         <img src="../../assets/icon/power.svg">
@@ -44,65 +46,57 @@
 
     <div class="container2">
 
-      <div class="cod_entrega">
-        <label for="input_entrega"># entrega:</label>
-        <input type="text" id="input_entrega">
-        <input type="date" class="input_fecha">
-      </div>
 
       <div class="content_form">
 
-        <form action="post">
+        <form [formGroup]="form" autocomplete="off" (submit)="crearEntradaInsumo()">
 
           <div class="opciones">
-            <label for="recibe">Recibe:</label>
-            <select name="" id="recibe">
-              <option value="" selected>-seleccione usuario-</option>
-              <option value="">Usuario 1</option>
-              <option value="">Usuario 2</option>
-              <option value="">Usuario 3</option>
+            <label for="in_fecha">Fecha:</label>
+            <input formControlName="fecha" type="date" class="in_fecha">
+          </div>
+
+          <div class="opciones">
+            <label for="in_usuario">Responsable:</label>
+            <select formControlName="responsable" id="in_usuario">
+              <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+                <option>-Seleccionar responsable-</option>
+                <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}}
+                  {{usuario.apellidos}}</option>
+              </ng-container>
             </select>
           </div>
 
           <div class="opciones">
-            <label for="insumo">Insumo:</label>
-            <select name="" id="insumo">
-              <option value="" selected>-seleccione insumo-</option>
-              <option value="">Insumo 1</option>
-              <option value="">Insumo 2</option>
-              <option value="">Insumo 3</option>
+            <label for="in_insumo">Insumo:</label>
+            <select formControlName="nom_insumo" id="in_insumo">
+              <ng-container *ngIf="insumoservice.getInsumoObserver() | async as insumoData">
+                <option>-Seleccionar insumo-</option>
+                <option value="{{insumo.cod_insumo}}" *ngFor="let insumo of insumoData.insumos">{{insumo.nom_insumo}}
+                </option>
+              </ng-container>
             </select>
           </div>
 
           <div class="opciones">
-            <label for="stock">Stock:</label>
-            <input type="text" id="stock">
+            <label for="stock">Cantidad:</label>
+            <input formControlName="cantidad" type="text" id="stock">
           </div>
 
           <div class="opciones">
             <label for="estado">Estado:</label>
-            <select name="" id="estado">
+            <select formControlName="estado" id="estado">
               <option value="" selected>-seleccione estado-</option>
-              <option value="">Buen estado</option>
-              <option value="">Regular</option>
-              <option value="">Mal estado</option>
-            </select>
-          </div>
-
-          <div class="opciones">
-            <label for="procedencia">Procedencia:</label>
-            <select name="" id="procedencia">
-              <option value="" selected>-seleccine procedencia-</option>
-              <option value="">Procedencia 1</option>
-              <option value="">Procedencia 2</option>
-              <option value="">Procedencia 3</option>
+              <option value="Buen estado">Buen estado</option>
+              <option value="Regular">Regular</option>
+              <option value="Mal estado">Mal estado</option>
             </select>
           </div>
 
           <div class="div_enviar_datos">
             <input type="submit" value="Enviar datos">
           </div>
-          
+
         </form>
 
       </div>
