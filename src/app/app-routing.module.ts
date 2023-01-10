@@ -141,6 +141,11 @@ const routes: Routes = [
     path: 'confi-perfil',
     loadChildren: () => import('./confi-perfil/confi-perfil.module').then( m => m.ConfiPerfilPageModule)
   },
+  {
+    path: 'historial-pila/:cod_zona',
+    loadChildren: () => import('./historial-pila/historial-pila.module').then( m => m.HistorialPilaPageModule)
+  },
+
 
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import UsuarioData from '../datos/usuario/usuariodata'
+import { ZonaService } from '../datos/usuario/zonadata.service';
 
 @Component({
   selector: 'app-biofabrica',
@@ -9,9 +10,13 @@ import UsuarioData from '../datos/usuario/usuariodata'
 export class BiofabricaPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
 
-  constructor() { }
+  constructor(
+    public zonaservice: ZonaService
+  ) { }
 
   ngOnInit() {
+    this.zonaservice.obtenerZonas();
   }
+  
 
 }

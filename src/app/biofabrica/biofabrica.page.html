@@ -4,10 +4,10 @@
     <nav>
         <ion-toolbar color="mycolors">
             <ion-buttons slot="start">
-              <ion-back-button defaultHref="/modulos"></ion-back-button>
+                <ion-back-button defaultHref="/modulos"></ion-back-button>
             </ion-buttons>
             <ion-title>Biofábrica</ion-title>
-          </ion-toolbar>
+        </ion-toolbar>
 
         <div class="content_menu_h">
             <img src="../../assets/icon/menu-h.svg" class="nav_img">
@@ -19,7 +19,7 @@
         <div class="container1">
             <!--foto de usuario-->
             <div class="usuario">
-                <img src="../../assets/icon/ava-men2.svg" >
+                <img src="../../assets/icon/ava-men2.svg">
             </div>
 
 
@@ -33,8 +33,8 @@
 
                     <div class="div_rol" *ngIf="user.rol ==1; else lider">
                         <label>administrador</label>
-                     </div>
-                     <ng-template #lider>líder</ng-template>
+                    </div>
+                    <ng-template #lider>líder</ng-template>
                     <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
                 </ng-container>
 
@@ -48,42 +48,19 @@
         <div class="pantalla">
             <p>Seguimiento pilas compostaje</p>
             <div class="mapa">
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        1</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        2</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        3</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        4</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        5</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        6</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        7</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        8</a>
-                </div>
-                <div class="content_btn_zona">
-                    <a href="https://www.google.com" class="btn_zona"><ion-img src="../../assets/icon/notas.svg"></ion-img>Zona
-                        9</a>
-                </div>
+
+                <ng-container *ngIf="zonaservice.getZonaObserver() | async as zonaData">
+                    <div *ngFor="let zona of zonaData.zonas">
+
+                        <div class="content_btn_zona">
+                            <label class="btn_zona" [routerLink]="['/historial-pila/',zona.cod_zona]">
+                                <h5>{{zona.nom_zona}} - {{zona.cod_zona}}</h5><ion-img
+                                    src="../../assets/icon/notas.svg" ></ion-img>
+                            </label>
+                        </div>
+
+                    </div>
+                </ng-container>
             </div>
         </div>
         <div class="container3">
