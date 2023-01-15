@@ -21,7 +21,6 @@ export class BitacorasPage implements OnInit {
   num_operarios: any;
   insumos: any;
   observa: any;
-  // evidencia: string
   form: FormGroup;
 
   constructor(
@@ -40,7 +39,6 @@ export class BitacorasPage implements OnInit {
       num_operarios: ['', Validators.compose([Validators.required])],
       insumos: ['', Validators.compose([Validators.required])],
       observa: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      // evidencia: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
   }
 
@@ -48,6 +46,10 @@ export class BitacorasPage implements OnInit {
     this.secundariaservice.obtenerSecundarias();
     this.insumoservice.obtenerInsumos();
     this.usuarioservice.obtenerUsuarios();
+  }
+
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
   }
 
   crearBitacora(){

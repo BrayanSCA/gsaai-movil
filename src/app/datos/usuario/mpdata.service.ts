@@ -69,13 +69,12 @@ export class MpService {
   constructor(private conexionService: ConexionService) { }
 }
 
+interface IMpsData {
+  mps: IMps[]
+}
+
 interface IMps {
   cod_mp: string,
   nombre_mp: string,
-  stock: string,
   relacion_cn: string
-}
-
-interface IMpsData {
-  mps: IMps[]
 }

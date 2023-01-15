@@ -14,4 +14,8 @@ export class ParametrosPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
 }

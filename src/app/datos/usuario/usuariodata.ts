@@ -29,6 +29,7 @@ class UsuarioData{
 export default new UsuarioData()
 
 interface IUsuario {
+    di: string,
     nombres: string,
     apellidos: string,
     correo: string,

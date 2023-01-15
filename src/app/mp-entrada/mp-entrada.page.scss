@@ -82,19 +82,6 @@ ion-back-button {
     padding: 1em;
 }
 
-.ventanas {
-    display: flex;
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    background-color: #e4e4e4;
-}
-
-.ven_entrada, .ven_salida {
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-    padding: 1px 2px;
-    margin: 0px 2px;
-}
-
 .cod_entrada {
     display: flex;
     justify-content: space-between;
@@ -110,10 +97,9 @@ ion-back-button {
     height: 40px;
 }
 
-input[type="text"], select{
+input[type="text"], select, input[type="number"], input[type="date"]{
     border: 0px;
     width: 55%;
-    margin-bottom: 1em;
     border-radius: 5px;
     padding-left: 3px;
     background-color: white;
@@ -124,24 +110,6 @@ input:focus{
     border: 1px solid #2c4018;
 }
 
-#input_entrada {
-    width: 20%;
-    border: 0px;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    border: 1px solid #2c4018;
-}
-
-.input_fecha {
-    width: 40%;
-    height: 30px;
-    border-radius: 5px;
-}
-
-.content_input {
-    display: flex;
-    justify-content: space-between;
-}
 
 form {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
@@ -149,7 +117,12 @@ form {
     border-radius: 10px;
     background-color: #e4e4e4;
     margin-top: 3px;
+}
 
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .content_agregar_mp {

@@ -19,6 +19,10 @@ export class ZonasPage implements OnInit {
     this.zonaservice.obtenerZonas();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarZona(cod_zona:string){
     this.zonaservice.eliminarZona(cod_zona)
   }

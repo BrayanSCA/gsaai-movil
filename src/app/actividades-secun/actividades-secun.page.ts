@@ -20,6 +20,10 @@ usuarioObservable=UsuarioData.getUsuarioObserver()
     this.actisecundataservice.obtenerSecundarias()
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarSecundaria(cod_secund: string) {
     this.actisecundataservice.eliminarSecundaria(cod_secund)
   }

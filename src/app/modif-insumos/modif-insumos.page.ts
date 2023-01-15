@@ -12,12 +12,7 @@ import UsuarioData from '../datos/usuario/usuariodata';
 })
 export class ModifInsumosPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
-  fecha: any;
   cod_insumo: any;
-  nom_insumo: any;
-  caracteristicas: any;
-  estado: any;
-  procedencia: any;
   codactual: any;
   form: FormGroup;
   isEdit: boolean = false;
@@ -55,6 +50,10 @@ export class ModifInsumosPage implements OnInit {
 
   ngOnInit() {
     this.procedenciadataservice.obtenerProcedencias();
+  }
+
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
   }
 
   crearInsumo() { console.log(this.form.value)

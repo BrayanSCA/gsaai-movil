@@ -93,10 +93,6 @@ const routes: Routes = [
     loadChildren: () => import('./mejoradores/mejoradores.module').then( m => m.MejoradoresPageModule)
   },
   {
-    path: 'finalidad',
-    loadChildren: () => import('./finalidad/finalidad.module').then( m => m.FinalidadPageModule)
-  },
-  {
     path: 'lista-insumos',
     loadChildren: () => import('./lista-insumos/lista-insumos.module').then( m => m.ListaInsumosPageModule)
   },

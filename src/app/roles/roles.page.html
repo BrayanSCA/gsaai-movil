@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,23 +37,16 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
-
-      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-        <ion-fab-button [routerLink]="['/modif-roles/',-1]">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 
       <ng-container *ngIf="roldataservice.getRolObserver() | async as rolData ">
         <ion-list>
@@ -60,24 +54,30 @@
             Lista de Roles
           </ion-list-header>
 
+          <div *ngFor="let rol of rolData.roles" class="caja">
 
-          <ion-item *ngFor="let rol of rolData.roles">
-
-            <ion-label>
-              <h5>{{rol.fecha}} - {{rol.cod_rol}}, {{rol.nom_rol}}</h5>
-            </ion-label>
+            <label>Fecha: {{rol.fecha}}</label>
+            <label>Código rol: {{rol.cod_rol}}</label>
+            <label>Nombre rol: {{rol.nom_rol}}</label>
 
             <div class="item-note">
               <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-roles/',rol.cod_rol]"></ion-icon>
               <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarRol(rol.cod_rol)"></ion-icon>
             </div>
 
-          </ion-item>
+          </div>
+
         </ion-list>
       </ng-container>
     </div>
 
   </main>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/modif-roles/',-1]">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <footer>
     <p>contacto:</p>

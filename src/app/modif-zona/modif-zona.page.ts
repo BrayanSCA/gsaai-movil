@@ -45,6 +45,10 @@ export class ModifZonaPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearZona() {
     if (this.isEdit) {
       this.zonaservice.modificarZona(this.form, this.codactual);

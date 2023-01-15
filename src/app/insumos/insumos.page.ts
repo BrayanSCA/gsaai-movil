@@ -42,6 +42,10 @@ export class InsumosPage implements OnInit {
     this.usuarioservice.obtenerUsuarios();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearEntradaInsumo(){
     this.insumoentradaservice.guardarEntradaInsumo(this.form);
   }

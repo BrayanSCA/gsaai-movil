@@ -92,7 +92,14 @@ form {
     flex-direction: column;
 }
 
-input[type="text"], select, input[type="search"]{
+.opciones {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="text"], input[type="date"]{
     border: 0px;
     width: 55%;
     border-radius: 5px;

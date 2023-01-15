@@ -45,6 +45,10 @@ export class ModifRolesPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearRol() {
     if (this.isEdit) {
       this.roldataservice.modificarRol(this.form, this.codactual);

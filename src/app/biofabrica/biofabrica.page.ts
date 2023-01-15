@@ -18,5 +18,8 @@ export class BiofabricaPage implements OnInit {
     this.zonaservice.obtenerZonas();
   }
   
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
 
 }

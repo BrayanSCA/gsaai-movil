@@ -66,6 +66,10 @@ export class ModifUsuariosPage implements OnInit {
     this.fichaservice.obtenerFichas()
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearUsuario() {
     if (this.isEdit) {
       this.usuarioservice.modificarUsuario(this.form, this.codactual);

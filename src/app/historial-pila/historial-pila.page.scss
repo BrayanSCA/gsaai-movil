@@ -82,21 +82,39 @@ ion-back-button {
     padding: 1em;
 }
 
-.form_procedencia {
+.contentDatos {
     background-color: #e4e4e4;
     margin-top: 2px;
     border-radius: 10px;
     padding: 20px 5px 5px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
 }
 
-.opciones {
+.titulo {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.datosPila, .subtitulo{
+    margin-top: 5px;
+    padding-top: 20px;
+    border-top: #2c4018 1px solid;
+}
+
+.datosPila label {
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.datosMp, .datosHistorial {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.datosHistorial {
+    border-bottom: #2c4018 1px solid;
 }
 
 input[type="text"], select, input[type="search"]{

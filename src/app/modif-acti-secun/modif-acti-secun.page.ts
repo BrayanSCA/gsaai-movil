@@ -45,6 +45,10 @@ export class ModifActiSecunPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearSecundaria() {
     if (this.isEdit) {
       this.actisecundataservice.modificarSecundaria(this.form, this.codactual);

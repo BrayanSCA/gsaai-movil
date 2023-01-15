@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,25 +37,22 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
 
-      <div class="form_procedencia">
-
         <form [formGroup]="form" autocomplete="off" (submit)="crearProcedencia()">
 
           <div class="opciones">
-            <ion-label for="in_nom_proce">Nombre procedencia:</ion-label>
-            <ion-input formControlName="nom_procedencia" type="text" id="in_nom_proce"></ion-input>
+            <label>Nombre procedencia:</label>
+            <input formControlName="nom_procedencia" type="text">
           </div>
 
           <div class="botones">
@@ -63,8 +61,9 @@
           </div>
 
         </form>
-      </div>
+
     </div>
+
   </main>
 
   <footer>

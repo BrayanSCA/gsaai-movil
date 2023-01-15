@@ -18,6 +18,10 @@ export class RolesPage implements OnInit {
     this.roldataservice.obtenerRoles()
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarRol(cod_rol: string) {
     this.roldataservice.eliminarRol(cod_rol)
   }

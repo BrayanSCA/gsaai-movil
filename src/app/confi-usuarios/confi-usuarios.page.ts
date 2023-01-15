@@ -20,6 +20,10 @@ export class ConfiUsuariosPage implements OnInit {
     this.usuarioservice.obtenerUsuarios()
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarUsuario(di: string) {
     this.usuarioservice.eliminarUsuario(di)
   }

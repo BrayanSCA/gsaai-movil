@@ -48,6 +48,10 @@ export class AbonosEntradaPage implements OnInit {
     this.mejoradorservice.obtenerMejoradores();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+  
   crearAbonoEntrada(){ console.log(this.form.value)
     this.abonoentradaservice.guardarAbonoEntrada  (this.form);
   }

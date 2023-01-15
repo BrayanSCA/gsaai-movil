@@ -26,8 +26,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -35,12 +36,11 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
@@ -56,35 +56,56 @@
         </div>
 
         <div class="opciones">
-          <label for="in_usuario">Responsable:</label>
-          <select formControlName="responsable" id="in_usuario">
-            <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+          <label>Responsable:</label>
+          <select formControlName="responsable">
+            <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}}, {{usuario.apellidos}}</option>
+              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>
 
         <!--agregar actividades rutinarias-->
-        <div class="">
-          <label for="agregar_rutinaria" class="label_titulo">Actividades rutinarias</label>
+        <!-- <div> -->
+          <label class="label_titulo">Actividades rutinarias</label>
 
+          <div class="lista">
+
+            <input type="checkbox" value="Bitácora" name="Bitácora">
+            <label for="Bitácora">Bitácora</label>
+
+            <input type="checkbox" value="Pedido insumos" name="Pedido insumos">
+            <label for="Pedido insumos">Pedido insumos</label>
+
+            <input type="checkbox" value="Recibir mp">
+            <label for="Recibir mp">Recibir mp</label>
+
+            <input type="checkbox" value="Actualizar pila">
+            <label for="Actualizar pila">Actualizar pila</label>
+
+            <input type="checkbox" value="Nueva pila">
+            <label for="Nueva pila">Nueva pila</label>
+
+            <input type="checkbox" value="Combinar pila">
+            <label for="Combinar pila">Combinar pila</label>
+
+          </div>
+<!-- 
           <div class="caja_lista">
-            <select formControlName="rutinarias" id="agregar_rutinaria">
-              <option value="1" selected>-Seleccione actividad-</option>
-              <option value="2">Bitácora</option>
-              <option value="3">Pedido insumos</option>
-              <option value="4">Recibir mp</option>
-              <option value="5">Actualizar pila</option>
-              <option value="6">Planear activiades</option>
-              <option value="7">Nueva pila</option>
-              <option value="8">Combinar pila</option>
+            <select formControlName="rutinarias" multiple>
+              <option value="" selected>-Seleccione actividad-</option>
+              <option value="Bitácora">Bitácora</option>
+              <option value="Pedido insumos">Pedido insumos</option>
+              <option value="Recibir mp">Recibir mp</option>
+              <option value="Actualizar pila">Actualizar pila</option>
+              <option value="Nueva pila">Nueva pila</option>
+              <option value="Combinar pila">Combinar pila</option>
             </select>
 
             <button class="btn_agregar">Agregar</button>
-          </div>
+          </div> -->
 
-          <div class="content_table">
+<!--           <div class="content_table">
             <table>
               <tr>
                 <th>#</th>
@@ -103,24 +124,25 @@
                 <td>Recibir MP</td>
               </tr>
             </table>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
 
         <!--agregar actividades no rutinarias-->
-        <div class="">
+        <div>
           <label for="in_norutinaria" class="label_titulo">Actividades no rutinarias</label>
 
           <div class="opciones">
             <select formControlName="no_rutinarias" id="in_norutinaria">
               <ng-container *ngIf="secundariaservice.getSecundariaObserver() | async as secundariaData">
                 <option>-Seleccionar responsable-</option>
-                <option value="{{secundaria.cod_secund}}" *ngFor="let secundaria of secundariaData.secundarias">{{secundaria.nom_acti_sec}}</option>
+                <option value="{{secundaria.cod_secund}}" *ngFor="let secundaria of secundariaData.secundarias">
+                  {{secundaria.nom_acti_sec}}</option>
               </ng-container>
             </select>
           </div>
 
-            <button class="btn_agregar">Agregar</button>
-          </div>
+          <button class="btn_agregar">Agregar</button>
+        </div>
 
         <div class="content_table">
           <table>
@@ -156,11 +178,12 @@
         <div class="">
           <label for="in_insumo" class="label_titulo">Insumos recibidos:</label>
           <div class="opciones">
-            
+
             <select formControlName="insumos" id="in_insumo">
               <ng-container *ngIf="insumoservice.getInsumoObserver() | async as insumoData">
                 <option>-Seleccionar responsable-</option>
-                <option value="{{insumo.cod_insumo}}" *ngFor="let insumo of insumoData.insumos">{{insumo.nom_insumo}}</option>
+                <option value="{{insumo.cod_insumo}}" *ngFor="let insumo of insumoData.insumos">{{insumo.nom_insumo}}
+                </option>
               </ng-container>
             </select>
           </div>
@@ -207,7 +230,7 @@
         </div>
 
 
-<!--         <div class="div_img_mp">
+        <!--         <div class="div_img_mp">
           <img src="../../assets/icon/mp.svg" class="img_mp">
         </div>
         <div class="div_subir_foto">

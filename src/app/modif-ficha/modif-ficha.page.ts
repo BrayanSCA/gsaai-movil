@@ -45,6 +45,10 @@ export class ModifFichaPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearFicha() {
     if (this.isEdit) {
       this.fichaservice.modificarFicha(this.form, this.codactual);

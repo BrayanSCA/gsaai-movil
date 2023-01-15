@@ -26,8 +26,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -35,23 +36,16 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
-
-      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-        <ion-fab-button [routerLink]="['/modif-materias-p/',-1]">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 
       <ng-container *ngIf="mpdataservice.getMpObserver() | async as mpData ">
         <ion-list>
@@ -60,23 +54,31 @@
           </ion-list-header>
 
 
-          <ion-item *ngFor="let mp of mpData.mps">
+          <div *ngFor="let mp of mpData.mps" class="caja">
 
-            <ion-label>
-              <h5>{{mp.cod_mp}} - {{mp.nombre_mp}} - {{mp.stock}} - {{mp.relacion_cn}}</h5>
-            </ion-label>
+            <label>Código materia prima: {{mp.cod_mp}}</label>
+            <label>Nombre materia prima: {{mp.nombre_mp}}</label>
+            <label>Relación C/N: {{mp.relacion_cn}}</label>
 
             <div class="item-note">
               <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-materias-p/',mp.cod_mp]"></ion-icon>
               <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarMp(mp.cod_mp)"></ion-icon>
             </div>
 
-          </ion-item>
+          </div>
+
         </ion-list>
+
       </ng-container>
 
     </div>
   </main>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/modif-materias-p/',-1]">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <footer>
     <p>contacto:</p>

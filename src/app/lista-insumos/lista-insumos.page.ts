@@ -18,6 +18,10 @@ export class ListaInsumosPage implements OnInit {
     this.insumodataservice.obtenerInsumos();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarInsumo(cod_insumo: string) {
     this.insumodataservice.eliminarInsumo(cod_insumo)
   }

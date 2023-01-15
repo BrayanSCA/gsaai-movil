@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { ConexionService } from 'src/app/services/conexion.service';
+// import { ZonasService } from '../funciones/zonas.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ZonaService {
     if (form.valid) {
       const zona = form.value;
       this.conexionService.crearZona(zona).subscribe((res: any) => {
+        // this.zonaService.crearZona(zona)
         form.reset();
         alert('Zona ingresada correctamente');
         this.obtenerZonas();
@@ -30,6 +32,7 @@ export class ZonaService {
       const nuevaData: IZonasData = {
         zonas: res
       }
+      console.log(nuevaData)
       this.zonas.next(nuevaData);
     }, (error: any) => {
       console.log("ERROR ===", error);
@@ -52,10 +55,18 @@ export class ZonaService {
     return this.zonas.asObservable()
   }
 
+  public ZonasConPilaObserver(): Observable<IZonas[]> {
+    return this.zonas.asObservable().pipe(map(item=> item.zonas.filter(zona=> zona.pila_id)))
+  }
+
+  public ZonasSinPilaObserver(): Observable<IZonas[]> {
+    return this.zonas.asObservable().pipe(map(item=> item.zonas.filter(zona=> !zona.pila_id)))
+  }
+
   public modificarZona(form: FormGroup, codactual: string) {
     if (form.valid) {
       const zona = form.value;
-      zona["codactual"] = codactual 
+      zona["codactual"] = codactual
       this.conexionService.actualizarZona(zona).subscribe((res: any) => {
         console.log("exitoso");
         alert('Zona modificada correctamente');
@@ -66,13 +77,16 @@ export class ZonaService {
     }
   }
 
-  constructor(private conexionService: ConexionService) { }
+  constructor(
+    private conexionService: ConexionService,
+  ) { }
 }
 
 interface IZonas {
   cod_zona: string,
   fecha: string,
-  nom_zona: string
+  nom_zona: string,
+  pila_id: number
 }
 
 interface IZonasData {

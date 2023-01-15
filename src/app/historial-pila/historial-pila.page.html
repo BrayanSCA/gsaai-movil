@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,44 +37,73 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
+      <div class="contentDatos">
+        <ng-container *ngIf="zonasService.getZona(cod_zona) | async as zonaData">
+          <ng-container *ngFor="let zona of zonaData">
+            
+            <div class="titulo">
+              <label>Centro Agropecuario de Buga </label>
+              <img src="../../assets/icon/sena-log.png" height="30px" width="30px">
+            </div>
+              <label>Hoja de vida {{zona.nom_zona}}: {{zona.cod_zona}}</label>
+              
+            <!-- <div > -->
+              <div *ngIf="zona.pila" class="datosPila">
 
-      <div class="form_ficha">
+                <label>Datos conformación de la pila</label>
+                <label></label>
+                <label></label>
+                <label>* Código conformación pila: {{zona.pila.cod_conf_pila}}</label>
+                <label>* Fecha de inicio: {{zona.pila.fecha_inicio}}</label>
+                <label>* Responsable conformación:</label>
+                <label>  {{zona.pila.responsable.nombres}} {{zona.pila.responsable.apellidos}}</label>
+                <label>* Observaciones: {{zona.pila.observaciones}}</label>
+                <label>* Conformación materia prima: </label>
+                
+                <div *ngFor="let mp of zona.pila.materia_prima_ingresada" class="datosMp">
+                  
+                  <label>> materia prima: {{mp.materia_prima.nombre_mp}}</label>
+                  <label>fecha: {{mp.fecha}}</label>
+                  <label>peso agregado: {{mp.peso}}</label>
+                  <label>procedente de: {{mp.procedencia.nom_procedencia}}</label>
+                  <label>relacion C/N total: {{mp.relacion_cn}}</label>
+  
+                </div>
 
-        <form [formGroup]="form" autocomplete="off">
+                <div class="subtitulo">
+                  <label>* Actualizaciones de pila:</label>
+                </div>
 
-          <div class="opciones">
-            <ion-label for="fecha">Fecha creación:</ion-label>
-            <ion-input formControlName="fecha" type="date" class="input_fecha"
-              style="background-color: #e4e4e4"></ion-input>
-          </div>
+                <div *ngFor="let h of zona.pila.historial" class="datosHistorial">
 
-          <div class="opciones">
-            <ion-label for="input_ficha">Código ficha:</ion-label>
-            <ion-input formControlName="cod_ficha" type="text" id="input_ficha"></ion-input>
-          </div>
+                  <label>> fecha: {{h.fecha}}</label>
+                  <label>responsable:</label>
+                  <label>{{h.responsable.nombres}} {{h.responsable.apellidos}}</label>
+                  <label></label>
+                  <label>temperatura promedio: {{h.temperatura_promedio}}</label>
+                  <label>humedad: {{h.humedad}}</label>
+                  <label>ph: {{h.ph}}</label>
+                  <label>volumen: {{h.volumen}}</label>
+                  <label>densidad: {{h.densidad}}</label>
+                  <label>peso: {{h.peso}}</label>
+                  <label>observaciones: {{h.observaciones}}</label>
 
-          <div class="opciones">
-            <ion-label for="nom_ficha">Nombre ficha:</ion-label>
-            <ion-input formControlName="nom_ficha" type="text" id="nom_ficha"></ion-input>
-          </div>
+                </div>
+              </div>
+            <!-- </div> -->
 
-          <div class="botones">
-            <input type="submit" [value]="isEdit?'modificar':'crear'">
-            <input type="reset" value="reiniciar">
-          </div>
-
-        </form>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </main>

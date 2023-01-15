@@ -3,11 +3,11 @@
     <nav>
         <ion-toolbar color="mycolors">
             <ion-buttons slot="start">
-              <ion-back-button defaultHref="/biofabrica"></ion-back-button>
+                <ion-back-button defaultHref="/biofabrica"></ion-back-button>
             </ion-buttons>
             <ion-title>Parámetros</ion-title>
-          </ion-toolbar>
-      
+        </ion-toolbar>
+
         <div class="content_menu_h">
             <img src="../../assets/icon/menu-h.svg" class="nav_img">
         </div>
@@ -25,25 +25,28 @@
             <header class="header">
 
                 <ng-container *ngIf="usuarioObservable | async as user">
+
                     <div class="div_nombre">
-                        <label>{{user.nombres}}</label>
+                        <label>{{user.nombres}} {{user.apellidos}}</label>
                     </div>
-        
-                    <div class="div_rol">
-                        <p class="rol">{{user.rol}}</p>
+
+                    <div class="div_rol" *ngIf="user.rol ==1; else lider">
+                        <label>administrador</label>
                     </div>
-                    <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+                    <ng-template #lider>líder</ng-template>
+
                 </ng-container>
-        
+
             </header>
             <!--botón cerrar sesión-->
-            <div class="cerrar_sesion">
+            <div class="cerrar_sesion" (click)="cerrarSesion()">
                 <img src="../../assets/icon/power.svg">
             </div>
         </div>
 
         <!--cuadro nuevo, combinar, actualizar-->
         <div class="container2">
+
             <div class="ventanas">
                 <div class="div_btn_imprimir">
                     <button>imprimir</button>
@@ -52,9 +55,11 @@
                     <button>pdf</button>
                 </div>
             </div>
-            <form action="post" class="form_consultas" autocomplete="off">
-                <div class="content_input">
-                    <label for="input_consulta">Consultar:</label>
+
+            <form autocomplete="off">
+
+                <div class="opciones">
+                    <label>Consultar:</label>
                     <select id="input_consulta">
                         <option selected>-Seleccionar consulta-</option>
                         <option value="1">Peso pilas</option>
@@ -62,17 +67,21 @@
                         <option value="3">Cambios fisicoquímicos</option>
                     </select>
                 </div>
-                <div class="content_input_fechas">
+
+                <div class="opciones">
                     <p>Rango de fechas:</p>
-                    <div class="div_fechas">
-                    <label for="desde_date">Desde:</label>
-                    <input type="date" id="desde_date">
-                    </div>
-                    <div class="div_fechas">
-                    <label for="hasta_date">Hasta:</label>
-                    <input type="date" id="hasta_date">
-                    </div>
                 </div>
+
+                <div class="opciones">
+                    <label>Desde:</label>
+                    <input type="date">
+                </div>
+
+                <div class="opciones">
+                    <label>Hasta:</label>
+                    <input type="date">
+                </div>
+
                 <div class="div_enviar_datos">
                     <input type="submit" value="Enviar datos">
                 </div>

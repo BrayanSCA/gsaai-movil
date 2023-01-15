@@ -21,7 +21,6 @@ export class AbonosSalidaPage implements OnInit {
   recibe: any;
   entrega: any;
   observa: any;
-  // evidencia: any;
   form: FormGroup;
 
   constructor(
@@ -40,13 +39,16 @@ export class AbonosSalidaPage implements OnInit {
       recibe: ['', Validators.compose([Validators.required])],
       entrega: ['', Validators.compose([Validators.required])],
       observa: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      // evidencia: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
   }
 
   ngOnInit() {
     this.usuarioservice.obtenerUsuarios();
     this.abonoentradaservice.obtenerAbonoEntradas();
+  }
+
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
   }
 
   crearAbonoSalida(){ console.log(this.form.value)

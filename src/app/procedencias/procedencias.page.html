@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,23 +37,16 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
-
-      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-        <ion-fab-button [routerLink]="['/modif-procedencias/',-1]">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 
       <ng-container *ngIf="procedenciadataservice.getProcedenciaObserver() | async as procedenciaData ">
         <ion-list>
@@ -61,23 +55,30 @@
           </ion-list-header>
 
 
-          <ion-item *ngFor="let procedencia of procedenciaData.procedencias">
+          <div *ngFor="let procedencia of procedenciaData.procedencias" class="caja">
 
-            <ion-label>
-              <h5>{{procedencia.cod_procedencia}}, {{procedencia.nom_procedencia}}</h5>
-            </ion-label>
+              <label>Código procedencia: {{procedencia.cod_procedencia}}</label>
+              <label>Nombre procedencia: {{procedencia.nom_procedencia}}</label>
 
             <div class="item-note">
               <ion-icon name="create" style="zoom: 2.0;" [routerLink]="['/modif-procedencias/',procedencia.cod_procedencia]"></ion-icon>
               <ion-icon name="trash" style="zoom: 2.0;" (click)="eliminarProcedencia(procedencia.cod_procedencia)"></ion-icon>
             </div>
 
-          </ion-item>
+          </div>
+
         </ion-list>
+
       </ng-container>
 
     </div>
   </main>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/modif-procedencias/',-1]">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <footer>
     <p>contacto:</p>

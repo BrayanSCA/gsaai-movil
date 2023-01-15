@@ -10,11 +10,33 @@ export class EntradaMpService {
 
   private entradamps: BehaviorSubject<IEntradaMpsData> = new BehaviorSubject({ entradamps: [] } as IEntradaMpsData);
 
-  public guardarEntradaMp(form: FormGroup) {
-    if (form.valid) {
-      const entradamp = form.value;
-      this.conexionService.crearEntradaMp(entradamp).subscribe((res: any) => {
-        form.reset();
+  public guardarEntradaMp(forms: FormGroup[]) {
+    const invalid = forms.some(form => !form.valid)
+    console.log(invalid)
+    if (!invalid) {
+      const materias_ingresadas: any = []
+      forms.map(form => {
+        const {value: {
+          fecha,
+          peso,
+          relacion_cn,
+          materia_prima_id,
+          procedencia_id,
+        }} = form
+
+        const materia = {
+          "fecha": fecha,
+          "peso": Number(peso),
+          "relacion_cn": Number(relacion_cn),
+          "materia_prima_id": Number(materia_prima_id),
+          "procedencia_id": Number(procedencia_id)
+        }
+        materias_ingresadas.push(materia)
+      })
+      console.log(materias_ingresadas)
+      this.conexionService.crearEntradaMp({materias_ingresadas}).subscribe((res: any) => {
+        forms = forms.filter((form, index) => index === 0)
+        forms.forEach(form => form.reset())
         alert('Entrada de materia prima ingresada correctamente');
         this.obtenerEntradaMps();
       }, (error: any) => {
@@ -70,10 +92,11 @@ export class EntradaMpService {
 }
 
 interface IEntradaMps {
-  cod_entra_mp: string,
+  id: string,
   fecha: string,
-  nom_mp: string,
   peso: string,
+  relacion_cn: string,
+  materia_prima_id: string,
   procedencia: string
 }
 

@@ -25,19 +25,21 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
-            <div class="div_nombre">
-                <label>{{user.nombres}}</label>
-            </div>
 
-            <div class="div_rol">
-                <p class="rol">{{user.rol}}</p>
-            </div>
-            <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+          <div class="div_nombre">
+            <label>{{user.nombres}} {{user.apellidos}}</label>
+          </div>
+
+          <div class="div_rol" *ngIf="user.rol ==1; else lider">
+            <label>administrador</label>
+          </div>
+          <ng-template #lider>líder</ng-template>
+
         </ng-container>
 
-    </header>
+      </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
@@ -55,71 +57,50 @@
           <button [routerLink]="['/cp-actualizar']">actualizar</button>
         </div>
       </div>
-      <div class="cod_entrada">
-        <label># Pila combi:</label><input type="text" id="input_entrada" placeholder="1">
-        <input type="date" class="input_fecha">
-      </div>
-      <form action="post" class="mp_entrada" autocomplete="off">
-        <div class="div_img_pila">
-          <img src="../../assets/icon/mp.svg" class="img_pila">
+
+      <form [formGroup]="form" (submit)="MoverPila()" autocomplete="off">
+
+        <div class="opciones">
+          <label>Fecha:</label>
+          <input formControlName="fecha" type="date">
         </div>
-        <div class="div_subir_foto">
-          <input type="file">
-          <p>subir foto pila</p>
-        </div>
-        <div class="content_input">
-          <label for="select_usuario">Responsable: </label>
-          <select id="select_usuario">
-            <option selected>-Seleccionar usuario-</option>
-            <option value="1">Usuario ejemplo 1</option>
-            <option value="2">Usuario ejemplo 2</option>
-            <option value="3">Usuario ejemplo 3</option>
+
+        <div class="opciones">
+          <label>Zona origen:</label>
+          <select formControlName="zona_origen">
+            <ng-container *ngIf="zonaservice.ZonasConPilaObserver() | async as zonaData">
+              <option>-Seleccionar zona-</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}
+              </option>
+            </ng-container>
           </select>
         </div>
 
-        <div class="content_input">
-          <label for="select_pila1" class="label_zona">Pila # 1:</label>
-          <select id="select_pila1">
-            <option selected>-Seleccione cod pila-</option>
-            <option>Pila # 1</option>
-            <option>Pila # 2</option>
-            <option>Pila # 3</option>
+        <div class="opciones">
+          <label>Zona destino:</label>
+          <select formControlName="zona_destino">
+            <ng-container *ngIf="zonaservice.getZonaObserver() | async as zonaData">
+              <option>-Seleccionar zona-</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData.zonas">{{zona.nom_zona}} {{zona.cod_zona}}
+              </option>
+            </ng-container>
           </select>
         </div>
 
-        <div class="content_input">
-          <label for="select_pila2" class="label_zona">Pila # 2:</label>
-          <select id="select_pila2">
-            <option selected>-Seleccione cod pila-</option>
-            <option>Pila # 1</option>
-            <option>Pila # 2</option>
-            <option>Pila # 3</option>
-          </select>
-        </div>
-
-        <div class="content_input">
-          <label for="select_zona" class="label_zona">Zona destino: </label>
-          <select id="select_zona">
-            <option selected>-Seleccione # Zona-</option>
-            <option>Zona 1</option>
-            <option>Zona 2</option>
-            <option>Zona 3</option>
-          </select>
-        </div>
-        <div class="content_input_observaciones">
-          <label for="observaciones" class="label_observaciones">Observaciones:</label>
-          <textarea name="observaciones" id="observaciones" maxlength="200" cols="30" rows="10"
+        <div class="opciones">
+          <label>Observaciones:</label>
+          <textarea formControlName="observaciones" maxlength="200" cols="30" rows="10"
             placeholder="max. 200 caracteres"></textarea>
         </div>
 
+        <div class="div_enviar_datos">
+          <input type="submit" value="Enviar datos">
+        </div>
+
       </form>
-
-      <div class="div_enviar_datos">
-        <input type="submit" value="Enviar datos">
-      </div>
-
     </div>
   </main>
+
   <footer>
     <p>contacto:</p>
     <a href="https://www.google.com"><img src="../../assets/icon/facebook.svg" class="img_footer"></a>

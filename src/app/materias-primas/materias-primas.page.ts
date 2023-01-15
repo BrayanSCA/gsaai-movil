@@ -18,6 +18,10 @@ export class MateriasPrimasPage implements OnInit {
     this.mpdataservice.obtenerMps();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarMp(cod_mp: string){
     this.mpdataservice.eliminarMp(cod_mp)
   }

@@ -18,7 +18,7 @@
   <main>
     <!--panel usuario-->
     <div class="container1">
-      <!--foto de usuario-->
+
       <div class="usuario">
         <img src="../../assets/icon/ava-men2.svg">
       </div>
@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,46 +37,43 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
 
-      <div class="form_ficha">
+      <form [formGroup]="form" autocomplete="off" (submit)="crearFicha()">
 
-        <form [formGroup]="form" autocomplete="off" (submit)="crearFicha()">
+        <div class="opciones">
+          <label>Fecha creación:</label>
+          <input formControlName="fecha" type="date">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="fecha">Fecha creación:</ion-label>
-            <ion-input formControlName="fecha" type="date" class="input_fecha"
-              style="background-color: #e4e4e4"></ion-input>
-          </div>
+        <div class="opciones">
+          <label>Código ficha:</label>
+          <input formControlName="cod_ficha" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="input_ficha">Código ficha:</ion-label>
-            <ion-input formControlName="cod_ficha" type="text" id="input_ficha"></ion-input>
-          </div>
+        <div class="opciones">
+          <label>Nombre ficha:</label>
+          <input formControlName="nom_ficha" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="nom_ficha">Nombre ficha:</ion-label>
-            <ion-input formControlName="nom_ficha" type="text" id="nom_ficha"></ion-input>
-          </div>
+        <div class="botones">
+          <input type="submit" [value]="isEdit?'modificar':'crear'">
+          <input type="reset" value="reiniciar">
+        </div>
 
-          <div class="botones">
-            <input type="submit" [value]="isEdit?'modificar':'crear'">
-            <input type="reset" value="reiniciar">
-          </div>
+      </form>
 
-        </form>
-      </div>
     </div>
+
   </main>
 
   <footer>

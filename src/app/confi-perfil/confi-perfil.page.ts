@@ -14,4 +14,7 @@ export class ConfiPerfilPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
 }

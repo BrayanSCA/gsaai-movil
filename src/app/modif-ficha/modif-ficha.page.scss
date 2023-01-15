@@ -82,7 +82,7 @@ ion-back-button {
     padding: 1em;
 }
 
-.form_procedencia {
+form {
     background-color: #e4e4e4;
     margin-top: 2px;
     border-radius: 10px;
@@ -99,7 +99,7 @@ ion-back-button {
     align-items: center;
 }
 
-input[type="text"], select, input[type="search"]{
+input[type="text"], input[type="date"], select {
     border: 0px;
     width: 55%;
     border-radius: 5px;
@@ -110,14 +110,6 @@ input[type="text"], select, input[type="search"]{
 input:focus{
     outline: none;
     border: 1px solid #2c4018;
-}
-
-.botones input, .form_buscar input[type="submit"] {
-    margin-top: 30px;
-    padding: 5px;
-    background-color: #2c4018;
-    border-radius: 5px;
-    color: white;
 }
 
 .botones input {

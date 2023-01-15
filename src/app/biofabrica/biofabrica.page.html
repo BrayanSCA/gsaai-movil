@@ -27,22 +27,23 @@
             <header class="header">
 
                 <ng-container *ngIf="usuarioObservable | async as user">
+
                     <div class="div_nombre">
-                        <label>{{user.nombres}}</label>
+                        <label>{{user.nombres}} {{user.apellidos}}</label>
                     </div>
 
                     <div class="div_rol" *ngIf="user.rol ==1; else lider">
                         <label>administrador</label>
                     </div>
                     <ng-template #lider>líder</ng-template>
-                    <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
+
                 </ng-container>
 
             </header>
             <!--botón cerrar sesión-->
-            <div class="cerrar_sesion">
+            <div class="cerrar_sesion" (click)="cerrarSesion()">
                 <img src="../../assets/icon/power.svg">
-            </div>
+              </div>
         </div>
 
         <div class="pantalla">
@@ -55,7 +56,7 @@
                         <div class="content_btn_zona">
                             <label class="btn_zona" [routerLink]="['/historial-pila/',zona.cod_zona]">
                                 <h5>{{zona.nom_zona}} - {{zona.cod_zona}}</h5><ion-img
-                                    src="../../assets/icon/notas.svg" ></ion-img>
+                                    src="../../assets/icon/notas.svg"></ion-img>
                             </label>
                         </div>
 
@@ -65,48 +66,36 @@
         </div>
         <div class="container3">
             <div class="titulo_container3">
-                <p>Progreso tareas 0%</p>
+                <p>Lista actividades rutinarias</p>
                 <img src="../../assets/icon/calendario.svg">
             </div>
             <div class="lista_tareas">
                 <div class="content_check">
-                    <label for="chk_tarea1">Nombre de tarea 1</label><input type="checkbox" id="chk_tarea1">
+                    <label for="chk_tarea1">Actualizar cambios fisicoquímicos pila</label><input type="checkbox"
+                        id="chk_tarea1">
                 </div>
                 <div class="content_check">
-                    <label for="chk_tarea2">Nombre de tarea 2</label><input type="checkbox" id="chk_tarea2">
+                    <label for="chk_tarea2">Pedido insumos</label><input type="checkbox" id="chk_tarea2">
                 </div>
                 <div class="content_check">
-                    <label for="chk_tarea3">Nombre de tarea 3</label><input type="checkbox" id="chk_tarea3">
-                </div>
-                <div class="content_check">
-                    <label for="chk_tarea4">Nombre de tarea 4</label><input type="checkbox" id="chk_tarea4">
-                </div>
-                <div class="content_check">
-                    <label for="chk_tarea5">Nombre de tarea 5</label><input type="checkbox" id="chk_tarea5">
-                </div>
-                <div class="content_check">
-                    <label for="chk_tarea6">Nombre de tarea 6</label><input type="checkbox" id="chk_tarea6">
-                </div>
-                <div class="content_check">
-                    <label for="chk_tarea7">Nombre de tarea 7</label><input type="checkbox" id="chk_tarea7">
+                    <label for="chk_tarea3">Bitácora</label><input type="checkbox" id="chk_tarea3">
                 </div>
             </div>
-        </div>
 
-        <!--menu de funciones-->
-        <div class="menu">
-            <p>Menú</p>
-            <div class="cont_botones_menu">
-                <button class="btn_menu1" [routerLink]="['/mp-entrada']">Materias primas</button>
-                <button class="btn_menu2" [routerLink]="['/cp-nuevo']">Conformación pila</button>
-                <button class="btn_menu3" [routerLink]="['/parametros']">Parámetros</button>
-                <button class="btn_menu4" [routerLink]="['/bitacoras']">Bitácoras</button>
-                <button class="btn_menu5" [routerLink]="['/abonos-entrada']">Abonos</button>
-                <button class="btn_menu6" [routerLink]="['/insumos']">Insumos</button>
+            <!--menu de funciones-->
+            <div class="menu">
+                <p>Menú</p>
+                <div class="cont_botones_menu">
+                    <button class="btn_menu1" [routerLink]="['/mp-entrada']">Ingresar materias primas</button>
+                    <button class="btn_menu2" [routerLink]="['/cp-nuevo']">Conformación pila</button>
+                    <button class="btn_menu3" [routerLink]="['/parametros']">Parámetros</button>
+                    <button class="btn_menu4" [routerLink]="['/bitacoras']">Bitácoras</button>
+                    <button class="btn_menu5" [routerLink]="['/abonos-entrada']">Abonos</button>
+                    <button class="btn_menu6" [routerLink]="['/insumos']">Insumos</button>
+                </div>
+
             </div>
-
         </div>
-
     </main>
     <footer>
         <p>Contacto:</p>

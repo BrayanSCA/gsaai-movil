@@ -82,7 +82,7 @@ ion-back-button {
     padding: 1em;
 }
 
-.form_roles {
+form {
     background-color: #e4e4e4;
     margin-top: 2px;
     border-radius: 10px;
@@ -99,7 +99,7 @@ ion-back-button {
     align-items: center;
 }
 
-input[type="text"], select, input[type="search"]{
+input[type="text"], input[type="date"]{
     border: 0px;
     width: 55%;
     border-radius: 5px;
@@ -121,21 +121,8 @@ input:focus{
     color: white;
 }
 
-.form_buscar input[type="submit"]{
-    margin-top: 0px;
-}
-
 .botones input:hover, .botones button:hover {
     background-color: #598C26;
-}
-
-.btn_borrar {
-    background-color: #2c4018;
-    color: white;
-    padding: 10px 5px;
-    border-radius: 5px;
-    margin-left: 10px;
-    border: 1px #e4e4e4 solid;
 }
 
 footer {

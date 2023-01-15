@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConexionService } from 'src/app/services/conexion.service';
+import { ZonasService } from './zonas.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,26 @@ export class PilaActualizarService {
 
   public guardarPilaActualizar(form: FormGroup) {
     if (form.valid) {
-      const pilaactualizar = form.value;
-      console.log(pilaactualizar)
-      this.conexionService.crearPilaActualizar(pilaactualizar).subscribe((res: any) => {
+      const formData = form.value;
+      const body = {
+        mover_a: formData.checkMover&&formData.zona_mover!=="-Seleccionar zona-"?Number(formData.zona_mover):0,
+        cod_zona: formData.cod_zona,
+        historial: {
+          responsable_id: Number(formData.responsable_id),
+          temperatura_promedio: String(formData.temperatura_promedio),
+          humedad: formData.humedad,
+          ph: formData.ph,
+          volumen: formData.volumen,
+          densidad: formData.densidad,
+          peso: formData.peso,
+          observaciones: formData.observaciones,
+          fecha: formData.fecha
+        }
+      }
+      console.log("otra cosa",formData, body)
+      this.conexionService.crearPilaActualizar(body).subscribe((res: any) => {
         form.reset();
+        this.zonasService.obtenerZonasFull();
         alert('Pila actualizada correctamente');
         this.obtenerPilasActualizar();
       }, (error: any) => {
@@ -45,22 +62,23 @@ export class PilaActualizarService {
     return this.pilasactualizar.asObservable()
   }
 
-  constructor(private conexionService: ConexionService) { }
+  constructor(
+    private conexionService: ConexionService,
+    private zonasService: ZonasService
+    ) { }
 }
 
 interface IPilasActualizar {
-  cod_actualiza: string,
-  fecha: string,
-  // evidencia: string
-  responsable: string,
-  zona: string,
-  temp_prom: string,
+  historial_id: string,
+  responsable_id: string,
+  temperatura_promedio: string,
   humedad: string,
   ph: string,
   volumen: string,
   densidad: string,
   peso: string,
-  observa: string
+  observaciones: string,
+  fecha: string
 }
 
 interface IPilasActualizarData {

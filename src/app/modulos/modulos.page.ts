@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConexionService } from '../services/conexion.service';
 import UsuarioData from '../datos/usuario/usuariodata'
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modulos',
@@ -13,8 +12,8 @@ export class ModulosPage implements OnInit  {
   usuarioObservable=UsuarioData.getUsuarioObserver();
 
   constructor(
-    public conexion:ConexionService, 
-    private navController: NavController,) { }
+    public conexion:ConexionService
+    ) { }
 
   ngOnInit() {
     this.permisoAdmin()

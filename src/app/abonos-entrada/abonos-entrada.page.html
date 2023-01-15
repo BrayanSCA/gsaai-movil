@@ -26,8 +26,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -35,12 +36,11 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
@@ -66,9 +66,9 @@
         <div class="opciones">
           <label for="in_usuario">Responsable:</label>
           <select formControlName="responsable" id="in_usuario">
-            <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+            <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}} {{usuario.apellidos}}</option>
+              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>
@@ -83,7 +83,7 @@
           </select>
         </div>
 
-<!--         <div class="opciones">
+        <!--         <div class="opciones">
           <label for="select_almacen">Almacen</label>
           <select id="select_almacen">
             <option selected>-Seleccionar almacen-</option>
@@ -116,7 +116,8 @@
           <select formControlName="mejorador" id="in_mejorador">
             <ng-container *ngIf="mejoradorservice.getMejoradorObserver() | async as mejoradorData">
               <option>-Seleccionar mejorador-</option>
-              <option value="{{mejorador.cod_mejorador}}" *ngFor="let mejorador of mejoradorData.mejoradores">{{mejorador.nom_mejorador}}</option>
+              <option value="{{mejorador.cod_mejorador}}" *ngFor="let mejorador of mejoradorData.mejoradores">
+                {{mejorador.nom_mejorador}}</option>
             </ng-container>
           </select>
         </div>
@@ -131,7 +132,7 @@
           <textarea formControlName="observa" id="observaciones" maxlength="200" cols="30" rows="10"
             placeholder="max. 200 caracteres"></textarea>
         </div>
-<!-- 
+        <!-- 
         <div class="div_img_pila">
           <img src="../../assets/icon/mp.svg" class="img_pila">
         </div>

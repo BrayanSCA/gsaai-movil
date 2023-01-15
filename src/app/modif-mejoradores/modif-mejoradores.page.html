@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,46 +37,45 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
-      
-      <div class="form_mejorador">
 
-        <form [formGroup]="form" autocomplete="off" (submit)="crearMejorador()">
+      <form [formGroup]="form" autocomplete="off" (submit)="crearMejorador()">
 
-          <div class="opciones">
-            <ion-label for="in_cod_mejorador">Código mejorador:</ion-label>
-            <ion-input formControlName="cod_mejorador" type="text" id="in_cod_mejorador"></ion-input>
-          </div>
+        <div class="opciones">
+          <label>Código mejorador:</label>
+          <input formControlName="cod_mejorador" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="in_nom_mejorador">Nombre mejorador:</ion-label>
-            <ion-input formControlName="nom_mejorador" type="text" id="in_nom_mejorador"></ion-input>
-          </div>
+        <div class="opciones">
+          <label>Nombre mejorador:</label>
+          <input formControlName="nom_mejorador" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="in_caracteristicas">Caracteristicas:</ion-label>
-            <textarea formControlName="caracteristicas" type="text" id="in_caracteristicas" 
-            maxlength="200" placeholder="Max. 200 caracteres"></textarea>
-          </div>
+        <div class="opciones">
+          <label>Caracteristicas:</label>
+          <textarea formControlName="caracteristicas" type="text" maxlength="200" placeholder="Max. 200 caracteres"
+            cols="30" rows="10">
+          </textarea>
+        </div>
 
-          <div class="botones">
-            <input type="submit" [value]="isEdit?'modificar':'crear'">
-            <input type="reset" value="reiniciar">
-          </div>
+        <div class="botones">
+          <input type="submit" [value]="isEdit?'modificar':'crear'">
+          <input type="reset" value="reiniciar">
+        </div>
 
-        </form>
-      </div>
+      </form>
+
     </div>
+
   </main>
 
   <footer>

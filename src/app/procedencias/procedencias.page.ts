@@ -19,6 +19,10 @@ export class ProcedenciasPage implements OnInit {
     console.log(this.procedenciadataservice.obtenerProcedencias())
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarProcedencia(cod_procedencia:string) {
     this.procedenciadataservice.eliminarProcedencia(cod_procedencia)
   }

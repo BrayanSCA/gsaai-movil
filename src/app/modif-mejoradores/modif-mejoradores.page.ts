@@ -12,8 +12,6 @@ import UsuarioData from '../datos/usuario/usuariodata';
 export class ModifMejoradoresPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
   cod_mejorador: any;
-  nom_mejorador: any;
-  caracteristicas: any;
   codactual: any
   form: FormGroup;
   isEdit: boolean = false;
@@ -40,9 +38,14 @@ export class ModifMejoradoresPage implements OnInit {
         this.form.get("caracteristicas")?.setValue(mejoradorModificar.caracteristicas);
       }
     })
+
    }
 
   ngOnInit() {
+  }
+
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
   }
 
   crearMejorador() {

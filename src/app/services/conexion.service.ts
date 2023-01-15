@@ -206,7 +206,8 @@ export class ConexionService {
   }
 
   crearEntradaMp(data:any):Observable<any>{
-    return this.http.post(this.url+`/entradaMpCreate.php`,data);
+    const body = JSON.stringify(data);
+    return this.http.post(this.url+`/materia_prima_ingresada_create.php`,body);
   }  
 
   verEntradaMps(){
@@ -239,7 +240,8 @@ export class ConexionService {
   }
 
   crearPilaActualizar(data:any):Observable<any>{
-    return this.http.post(this.url+`/pilaActualizarCreate.php`,data);
+    const dataBody = JSON.stringify(data);
+    return this.http.post(this.url+`/historial_create.php`,dataBody);
   } 
   
   verPilasActualizar(){
@@ -296,5 +298,28 @@ export class ConexionService {
 
   verEntradaInsumo(cod_entra_insu:string){
     return this.http.get(this.url+'/entregaInsumoGet.php?cod_entra_insu='+cod_entra_insu);
+  }
+
+  crearBodyPila(data:any):Observable<any>{
+    const dataBody = JSON.stringify(data);
+    return this.http.post(this.url+`/pila_create.php`,dataBody);
+  } 
+
+  verMateriasPrimasIngresadas(){
+    return this.http.get(this.url+`/materia_prima_ingresada_read.php`);
+  }
+
+  crearMateriaPrimaIngresada(body:any){
+    const dataBody = JSON.stringify(body);
+    return this.http.post(this.url+`/materia_prima_ingresada_create.php`,dataBody);
+  }
+
+  crearCombinacionPila(data:any):Observable<any>{
+    const dataBody = JSON.stringify(data);
+    return this.http.post(this.url+`/mover_pilas.php`,dataBody);
+  } 
+
+  obtenerZonasFull(){
+    return this.http.get(this.url+`/zona_read.php`);
   }
 }

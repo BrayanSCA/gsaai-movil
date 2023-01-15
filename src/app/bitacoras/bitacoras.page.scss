@@ -78,16 +78,6 @@ ion-back-button {
     padding: 1em;
 }
 
-.cod_bitacora {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 5px;
-    align-items: center;
-    background-color: #e4e4e4;
-    border-radius: 5px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4)
-}
-
 .content_fecha {
     margin: auto 0px;
     height: 40px;
@@ -99,11 +89,17 @@ ion-back-button {
     padding: 10px 0px;
 }
 
-input[type="text"], select, input[type="number"]{
+.lista {
+    display: flex;
+    
+}
+
+input[type="text"], select,input[type="date"], textarea,
+select,input[type="date"]{
     border: 0px;
     width: 55%;
-    padding-left: 3px;
     border-radius: 5px;
+    padding-left: 3px;
     background-color: white;
 }
 
@@ -121,31 +117,6 @@ input[type="text"], select, input[type="number"]{
 input:focus{
     outline: none;
     border: 1px solid #2c4018;
-}
-
-#input_bitacora {
-    width: 20%;
-    border: 0px;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    border: 1px solid #2c4018;
-}
-
-.input_fecha {
-    width: 40%;
-    height: 30px;
-    border-radius: 5px;
-}
-
-/* .listados {
-    border-bottom: #2c4018 solid 1px;
-    margin-bottom: 10px;
-} */
-
-.content_input {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .content_table {

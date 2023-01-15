@@ -40,6 +40,10 @@ export class ModifProcedenciasPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearProcedencia() {
     if (this.isEdit) {
       this.procedenciadataservice.modificarProcedencia(this.form);

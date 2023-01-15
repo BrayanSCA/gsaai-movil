@@ -12,18 +12,6 @@ import { ZonaService } from '../datos/usuario/zonadata.service';
 })
 export class CpActualizarPage implements OnInit {
   usuarioObservable=UsuarioData.getUsuarioObserver()
-  cod_actualiza: any;
-  fecha: any;
-  // evidencia: any;
-  responsable: any;
-  zona: any;
-  temp_prom: any;
-  humedad: any;
-  ph: any;
-  volumen: any;
-  densidad: any;
-  peso: any;
-  observa: any;
   form: FormGroup;
 
   constructor(
@@ -33,18 +21,20 @@ export class CpActualizarPage implements OnInit {
     public zonaservice: ZonaService,
   ) {
     this.form = this.formBuilder.group({
-      cod_actualiza: [0],
-      fecha: ['', Validators.compose([Validators.required])],
-      // evidencia: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      responsable: ['', Validators.compose([Validators.required])],
-      zona: ['', Validators.compose([Validators.required])],
-      temp_prom: ['', Validators.compose([Validators.required])],
+      historial_id: [0],
+      responsable_id: ['', Validators.compose([Validators.required])],
+      temperatura_promedio: ['', Validators.compose([Validators.required])],
       humedad: ['', Validators.compose([Validators.required])],
       ph: ['', Validators.compose([Validators.required])],
       volumen: ['', Validators.compose([Validators.required])],
       densidad: ['', Validators.compose([Validators.required])],
       peso: ['', Validators.compose([Validators.required])],
-      observa: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      observaciones: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      fecha: ['', Validators.compose([Validators.required])],
+      cod_zona: ['', Validators.compose([Validators.required])],
+      zona_mover: [''],
+      checkMover: [false]
+
     })
    }
 
@@ -52,6 +42,11 @@ export class CpActualizarPage implements OnInit {
     this.usuarioservice.obtenerUsuarios();
     this.zonaservice.obtenerZonas();
   }
+
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   crearPilaActualizar(){ console.log(this.form.value)
     this.pilaactualizarservice.guardarPilaActualizar(this.form);
   }

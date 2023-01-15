@@ -27,8 +27,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -36,46 +37,43 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
     <div class="container2">
 
-      <div class="form_roles">
+      <form [formGroup]="form" autocomplete="off" (submit)="crearRol()">
 
-        <form [formGroup]="form" autocomplete="off" (submit)="crearRol()">
+        <div class="opciones">
+          <label for="fecha">Fecha creación:</label>
+          <input formControlName="fecha" type="date">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="fecha">Fecha creación:</ion-label>
-            <ion-input formControlName="fecha" type="date" name="fecha" class="input_fecha"
-              style="background-color: #e4e4e4"></ion-input>
-          </div>
+        <div class="opciones">
+          <label>Código rol:</label>
+          <input formControlName="cod_rol" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="input_ficha">Código rol:</ion-label>
-            <ion-input formControlName="cod_rol" type="text" name="cod_rol" id="input_rol"></ion-input>
-          </div>
+        <div class="opciones">
+          <label for="nom_ficha">Nombre rol:</label>
+          <input formControlName="nom_rol" type="text">
+        </div>
 
-          <div class="opciones">
-            <ion-label for="nom_ficha">Nombre rol:</ion-label>
-            <ion-input formControlName="nom_rol" type="text" name="nom_rol" id="nom_rol"></ion-input>
-          </div>
+        <div class="botones">
+          <input type="submit" [value]="isEdit?'modificar':'crear'">
+          <input type="reset" value="reiniciar">
+        </div>
 
-          <div class="botones">
-            <input type="submit" [value]="isEdit?'modificar':'crear'">
-            <input type="reset" value="reiniciar">
-          </div>
+      </form>
 
-        </form>
-      </div>
     </div>
+
   </main>
 
   <footer>

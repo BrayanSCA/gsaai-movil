@@ -14,4 +14,7 @@ export class ConfSisPage implements OnInit {
   ngOnInit() {
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
 }

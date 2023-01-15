@@ -25,8 +25,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -34,18 +35,17 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
 
-    <!--cuadro nuevo, combinar, actualizar-->
     <div class="container2">
+      <!--cuadro nuevo, combinar, actualizar-->
       <div class="ventanas">
         <div class="ven_nuevo">
           <button [routerLink]="['/cp-nuevo']">nuevo</button>
@@ -58,83 +58,54 @@
         </div>
 
       </div>
+
       <form [formGroup]="form" autocomplete="off" (submit)="crearPilaNueva()">
 
         <div class="opciones">
           <label>Fecha:</label>
-          <input formControlName="fecha_inicio" type="date" class="input_fecha">
+          <input formControlName="fecha_inicio" type="date">
         </div>
 
-<!--         <form action="post" class="mp_entrada" autocomplete="off">
-          <div class="div_img_pila">
-            <img src="../../assets/icon/mp.svg" class="img_pila">
-          </div> -->
-          <!-- <div class="div_subir_foto">
-          <input type="file">
-          <p>subir foto pila</p>
-        </div> -->
-
         <div class="opciones">
-          <label for="in_usuario">Responsable:</label>
-          <select formControlName="responsable" id="in_usuario">
-            <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
-              <option>-Seleccionar responsable-</option>
-              <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}} {{usuario.apellidos}}</option>
-            </ng-container>
-          </select>
+          <label>Codigo conformación de pila:</label>
+          <input formControlName="cod_conf_pila" type="text">
         </div>
 
         <div class="opciones">
           <label for="in_zona">Zona:</label>
-          <select formControlName="zona" id="in_zona">
+          <select formControlName="zona_id" id="in_zona">
             <ng-container *ngIf="zonaservice.getZonaObserver() | async as zonaData">
               <option>-Seleccionar zona-</option>
-              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData.zonas">{{zona.nom_zona}}</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData.zonas">{{zona.nom_zona}} {{zona.cod_zona}}
+              </option>
             </ng-container>
           </select>
         </div>
 
-          <div class="opciones">
-            <label for="observaciones" class="label_observaciones">Observaciones: </label>
-            <textarea formControlName="observaciones" id="observaciones" maxlength="200" cols="30" rows="10"
-              placeholder="max. 200 caracteres"></textarea>
-          </div>
+        <div class="opciones">
+          <label for="in_usuario">Responsable:</label>
+          <select formControlName="responsable_id" id="in_usuario">
+            <ng-container *ngIf="usuarioObservable | async as user">
+              <option>-Seleccionar responsable-</option>
+              <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
+            </ng-container>
+          </select>
+        </div>
 
-          <div class="opciones">
-            <label for="in_mp">Materia prima:</label>
-            <select id="in_mp">
-              <ng-container *ngIf="mpservice.getMpObserver() | async as mpData">
-                <option>-Seleccionar materia prima-</option>
-                <option value="{{mp.cod_mp}}" *ngFor="let mp of mpData.mps">{{mp.nombre_mp}}</option>
-              </ng-container>
-            </select>
-            <button>agregar</button>
-          </div>
-
-        <!-- </form> -->
-        <div class="content_table">
-          <table>
-            <tr>
-              <th>Nombre MP</th>
-              <th>Peso (kg)</th>
-              <th>C/N</th>
-            </tr>
-            <tr>
-              <td>Heno</td>
-              <td>16</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Cascaras</td>
-              <td>20</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>Bovinaza</td>
-              <td>15</td>
-              <td>18.5</td>
-            </tr>
-          </table>
+        <div class="opciones">
+          <label for="observaciones" class="label_observaciones">Observaciones: </label>
+          <textarea formControlName="observaciones" id="observaciones" maxlength="200" cols="30" rows="10"
+            placeholder="max. 200 caracteres"></textarea>
+        </div>
+        
+        <div class="opciones">
+          <label>Materia prima:</label>
+          <select formControlName="materia_prima" multiple>
+            <ng-container *ngIf="mpingresadaservice.getMpIngresadaObserver() | async as mpingresadaData">
+              <option value="{{mpingresada.id}}" *ngFor="let mpingresada of mpingresadaData.mpingresadas">
+                {{mpingresada.materia_prima.nombre_mp}}</option>
+            </ng-container>
+          </select>
         </div>
 
         <div class="div_enviar_datos">

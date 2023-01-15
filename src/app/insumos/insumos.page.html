@@ -25,8 +25,9 @@
       <header class="header">
 
         <ng-container *ngIf="usuarioObservable | async as user">
+
           <div class="div_nombre">
-            <label>{{user.nombres}}</label>
+            <label>{{user.nombres}} {{user.apellidos}}</label>
           </div>
 
           <div class="div_rol" *ngIf="user.rol ==1; else lider">
@@ -34,12 +35,11 @@
           </div>
           <ng-template #lider>líder</ng-template>
 
-          <p>Inicio de sesión: <br> 20/02/2020 07:00 am</p>
         </ng-container>
 
       </header>
       <!--botón cerrar sesión-->
-      <div class="cerrar_sesion">
+      <div class="cerrar_sesion" (click)="cerrarSesion()">
         <img src="../../assets/icon/power.svg">
       </div>
     </div>
@@ -59,10 +59,9 @@
           <div class="opciones">
             <label for="in_usuario">Responsable:</label>
             <select formControlName="responsable" id="in_usuario">
-              <ng-container *ngIf="usuarioservice.getUsuariosObserver() | async as usuarioData">
+              <ng-container *ngIf="usuarioObservable | async as user">
                 <option>-Seleccionar responsable-</option>
-                <option value="{{usuario.di}}" *ngFor="let usuario of usuarioData.usuarios">{{usuario.nombres}}
-                  {{usuario.apellidos}}</option>
+                <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
               </ng-container>
             </select>
           </div>

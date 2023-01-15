@@ -18,6 +18,10 @@ export class FichasPage implements OnInit {
     this.fichaservice.obtenerFichas();
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarFicha(cod_ficha: string) {
     this.fichaservice.eliminarFicha(cod_ficha)
   }

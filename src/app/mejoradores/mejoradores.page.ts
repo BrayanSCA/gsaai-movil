@@ -18,6 +18,10 @@ export class MejoradoresPage implements OnInit {
     this.mejoradordataservice.obtenerMejoradores()
   }
 
+  cerrarSesion(){
+    UsuarioData.cerrarsesion()
+  }
+
   eliminarMejorador(cod_mejorador: string) {
     this.mejoradordataservice.eliminarMejorador(cod_mejorador)
   }

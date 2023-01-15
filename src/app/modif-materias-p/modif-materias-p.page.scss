@@ -82,7 +82,7 @@ ion-back-button {
     padding: 1em;
 }
 
-.form_mp {
+form {
     background-color: #e4e4e4;
     margin-top: 2px;
     border-radius: 10px;
@@ -99,7 +99,7 @@ ion-back-button {
     align-items: center;
 }
 
-input[type="text"], select, input[type="search"]{
+input[type="text"]{
     border: 0px;
     width: 55%;
     border-radius: 5px;
