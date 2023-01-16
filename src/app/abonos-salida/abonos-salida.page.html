@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg">
+        <img src="../../assets/icon/user-b.png">
       </div>
       <!--datos principales usuario-->
       <header class="header">
@@ -57,13 +57,13 @@
       <form [formGroup]="form" autocomplete="off" (submit)="crearAbonoSalida()">
 
         <div class="opciones">
-          <label for="in_fecha">Fecha:</label>
-          <input formControlName="fecha" type="date" class="in_fecha">
+          <label>Fecha:</label>
+          <input formControlName="fecha" type="date">
         </div>
 
         <div class="opciones">
-          <label for="in_abono">Abono:</label>
-          <select formControlName="abono" id="in_abono">
+          <label>Abono:</label>
+          <select formControlName="abono">
             <ng-container *ngIf="abonoentradaservice.getAbonoEntradaObserver() | async as abonoData">
               <option>-Seleccionar lote abono-</option>
               <option value="{{abono.cod_abono}}" *ngFor="let abono of abonoData.abonoentradas">{{abono.lote_abono}}</option>
@@ -77,8 +77,8 @@
         </div>
 
         <div class="opciones">
-          <label for="in_finalidad">Finalidad:</label>
-          <select formControlName="finalidad" id="in_finalidad">
+          <label>Finalidad:</label>
+          <select formControlName="finalidad">
             <option selected>-Seleccionar finalidad-</option>
             <option value="Venta">Venta</option>
             <option value="Uso interno">Uso interno</option>
@@ -87,28 +87,28 @@
         </div>
 
         <div class="opciones">
-          <label for="in_destino">Destino:</label>
-          <input formControlName="destino" id="in_destino">
+          <label>Destino:</label>
+          <input formControlName="destino" type="text">
         </div>
 
         <div class="opciones">
-          <label for="in_recibe">Recibe:</label>
-          <input formControlName="recibe" id="in_recibe">
+          <label>Recibe:</label>
+          <input formControlName="recibe" type="text">
         </div>
 
         <div class="opciones">
-          <label for="in_usuario">Responsable:</label>
-          <select formControlName="entrega" id="in_usuario">
+          <label>Responsable:</label>
+          <select formControlName="entrega">
             <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
+              <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>
 
         <div class="opciones">
-          <label for="in_observa">Observaciones: </label>
-          <textarea formControlName="observa" id="in_observa" maxlength="200" cols="30" rows="10"
+          <label>Observaciones: </label>
+          <textarea formControlName="observa" maxlength="200" cols="30" rows="10"
             placeholder="max. 200 caracteres"></textarea>
         </div>
 

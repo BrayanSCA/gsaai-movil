@@ -45,10 +45,12 @@ ion-back-button {
     align-self: center;
     width: 80px;
     height: 88px;
+    background-color: #e4e4e4;
+    border-radius: 10px;
 }
 
 .usuario img {
-    width: 80px;
+    width: 90px;
     border-radius: 50%;
 }
 
@@ -91,11 +93,15 @@ ion-back-button {
 
 .lista {
     display: flex;
-    
+    flex-direction: column;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
 }
 
 input[type="text"], select,input[type="date"], textarea,
-select,input[type="date"]{
+select,input[type="number"]{
     border: 0px;
     width: 55%;
     border-radius: 5px;

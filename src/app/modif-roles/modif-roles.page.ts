@@ -25,7 +25,7 @@ export class ModifRolesPage implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])],
-      cod_rol: ['', Validators.compose([Validators.required])],
+      cod_rol: ['', Validators.compose([Validators.required,Validators.pattern(/^[0-9]+$/)])],
       nom_rol: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
 

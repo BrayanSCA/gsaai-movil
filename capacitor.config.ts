@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'io.gsaaiMolvil.starter',
   appName: 'gsaai_moviles',
   webDir: 'www',
   bundledWebRuntime: false

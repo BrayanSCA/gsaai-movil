@@ -96,13 +96,13 @@ main {
   font-size: 15px;
 }
 
-
-.di,
-.pass {
+.di, .pass {
   border-radius: 10px;
 }
 
-/*     background-image: url(../../assets/icon/user-b.png);
+.id input, .contrasena input {
+    background-image: url(../../assets/icon/user-b.png);
+    background-color: white;
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: 3% center;
@@ -112,9 +112,9 @@ main {
     margin: 3px 0px;
   }
   
-  .contrasena ion-input {
+  .contrasena input {
     background-image: url(../../assets/icon/pass.svg);
-  } */
+  }
 
 .contenedor1 .check {
   font-size: 13px;

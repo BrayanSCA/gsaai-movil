@@ -25,7 +25,7 @@ export class ModifInsumosPage implements OnInit {
   ) { 
     this.form = this.formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])],
-      cod_insumo: ['', Validators.compose([Validators.required])],
+      cod_insumo: [0], // '', Validators.compose([Validators.required])
       nom_insumo: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       caracteristicas: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       estado: ['', Validators.compose([Validators.required])],

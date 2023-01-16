@@ -13,14 +13,6 @@ import { UsuarioService } from '../datos/usuario/usuario.service';
 })
 export class BitacorasPage implements OnInit {
   usuarioObservable = UsuarioData.getUsuarioObserver()
-  cod_bita: any;
-  fecha: any;
-  responsable: any;
-  rutinarias: any;
-  no_rutinarias: any;
-  num_operarios: any;
-  insumos: any;
-  observa: any;
   form: FormGroup;
 
   constructor(

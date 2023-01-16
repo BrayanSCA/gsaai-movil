@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
 
@@ -55,21 +55,21 @@
           <label>Fecha creación:</label>
           <input formControlName="fecha" type="date">
         </div>
-
+        
+        <ng-container *ngIf="mpService.getMpObserver() | async as mpData">
         <div class="opciones">
           <label for="in_mp">Materia prima:</label>
-          <select formControlName="materia_prima_id" id="in_mp">
-            <ng-container *ngIf="mpService.getMpObserver() | async as mpData">
+          <select formControlName="materia_prima_id" id="in_mp" >  <!-- [(ngModel)]="mpSelect" (ionChange)="setValueMp()" -->
               <option>-Seleccionar Materia prima-</option>
-              <option value="{{mp.cod_mp}}" *ngFor="let mp of mpData.mps">{{mp.nombre_mp}}</option>
-            </ng-container>
-          </select>
-        </div>
-
-        <div class="opciones">
-          <label for="in_relacion">Relación C/N: </label>
-          <input formControlName="relacion_cn" type="text" id="in_relacion">
-        </div>
+              <option value="{{mp.cod_mp}}" *ngFor="let mp of mpData.mps"  >{{mp.nombre_mp}}</option> <!--[value]="mp.relacion_cn"  -->
+            </select>
+          </div>
+          
+          <div class="opciones">
+            <label for="in_relacion">Relación C/N: </label>
+            <input formControlName="relacion_cn" type="text" id="in_relacion"  readonly> <!-- [(ngModel)]="mp.relacion_cn" -->
+          </div>
+        </ng-container>
 
         <div class="opciones">
           <label for="in_peso">Peso (kg): </label>

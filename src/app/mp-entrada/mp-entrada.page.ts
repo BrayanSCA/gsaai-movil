@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { EntradaMpService } from '../datos/funciones/entradamp.service';
 import { MpService } from '../datos/usuario/mpdata.service';
 import { ProcedenciaService } from '../datos/usuario/procedenciadata.service';
 import UsuarioData from '../datos/usuario/usuariodata';
-// import ProcedenciaService from '../datos/funciones/entradamp.service';
 
 @Component({
   selector: 'app-mp-entrada',
@@ -16,13 +14,15 @@ export class MpEntradaPage implements OnInit {
   usuarioObservable = UsuarioData.getUsuarioObserver()
   forms: FormGroup[] = [];
   calculoOK: boolean = false
+  mpSelect: any;
+  
 
   constructor(
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private entradampservice: EntradaMpService,
     public procedenciaService: ProcedenciaService,
     public mpService: MpService
+
   ) { }
 
   ngOnInit() {
@@ -43,6 +43,7 @@ export class MpEntradaPage implements OnInit {
     })
 
     this.forms.push(form)
+
   }
 
   public eliminarFormulario(index: number) {
@@ -78,16 +79,17 @@ export class MpEntradaPage implements OnInit {
 
         return calculoUnaSolaMateria
       }).reduce((a, b) => a + b)
-// todo OK, si hace falta ajustar el calculo, el if de aca abajo, lo haces vos.. ya me tengo que ir muchas gracias sensei
       console.log(total)
-      // 300 numero inventado por mi
-      //if (total > 3000) { // comentado para probarlo al servicio
         this.calculoOK = true; // solo cuando todo esta OK, es que se puede enviar al servicio
-      //}
     }
   }
 
   trackForm(index: number, formulario: FormGroup) {
     return index
   }
+
+/*   setValueMp() {
+    console.log("mpSelect", this.mpSelect);
+    
+  } */
 }

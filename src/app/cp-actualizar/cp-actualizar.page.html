@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg" width="150px">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
 
@@ -71,7 +71,7 @@
           <select formControlName="responsable_id">
             <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
+              <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>
@@ -81,7 +81,8 @@
           <select formControlName="cod_zona">
             <ng-container *ngIf="zonaservice.ZonasConPilaObserver() | async as zonaData">
               <option>-Seleccionar zona-</option>
-              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}
+              </option>
             </ng-container>
           </select>
         </div>
@@ -98,7 +99,8 @@
           <select id="in_zona" formControlName="zona_mover">
             <ng-container *ngIf="zonaservice.ZonasSinPilaObserver() | async as zonaData">
               <option>-Seleccionar zona-</option>
-              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}</option>
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}
+              </option>
             </ng-container>
           </select>
         </div>

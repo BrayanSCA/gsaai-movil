@@ -24,7 +24,7 @@ export class ModifActiSecunPage implements OnInit {
     private actisecundataservice: SecundariaService
   ) {
     this.form = this.formBuilder.group({
-      cod_secund: ['', Validators.compose([Validators.required])],
+      cod_secund: ['', Validators.compose([Validators.required,Validators.pattern(/^[0-9]+$/)])],
       fecha: ['', Validators.compose([Validators.required])],
       nom_acti_sec: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })

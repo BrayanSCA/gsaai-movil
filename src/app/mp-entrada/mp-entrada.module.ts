@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MpEntradaPageRoutingModule } from './mp-entrada-routing.module';
 
 import { MpEntradaPage } from './mp-entrada.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MpEntradaPage } from './mp-entrada.page';
     FormsModule,
     IonicModule,
     MpEntradaPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [MpEntradaPage]
 })

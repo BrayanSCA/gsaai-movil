@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
 
@@ -68,7 +68,7 @@
           <select formControlName="responsable" id="in_usuario">
             <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
+              <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>

@@ -17,7 +17,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg" width="150px">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
 
@@ -68,15 +68,15 @@
 
         <div class="opciones">
           <label>Codigo conformación de pila:</label>
-          <input formControlName="cod_conf_pila" type="text">
+          <input formControlName="cod_conf_pila" type="text" placeholder="ejem: AA00">
         </div>
 
         <div class="opciones">
           <label for="in_zona">Zona:</label>
-          <select formControlName="zona_id" id="in_zona">
-            <ng-container *ngIf="zonaservice.getZonaObserver() | async as zonaData">
+          <select id="in_zona" formControlName="zona_id">
+            <ng-container *ngIf="zonaservice.ZonasSinPilaObserver() | async as zonaData">
               <option>-Seleccionar zona-</option>
-              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData.zonas">{{zona.nom_zona}} {{zona.cod_zona}}
+              <option value="{{zona.cod_zona}}" *ngFor="let zona of zonaData">{{zona.nom_zona}} {{zona.cod_zona}}
               </option>
             </ng-container>
           </select>

@@ -46,10 +46,12 @@ ion-back-button {
     align-self: center;
     width: 80px;
     height: 88px;
+    background-color: #e4e4e4;
+    border-radius: 10px;
 }
 
 .usuario img {
-    width: 80px;
+    width: 90px;
     border-radius: 50%;
 }
 
@@ -95,22 +97,8 @@ ion-back-button {
     align-items: center;
 }
 
-.cod_entrega {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 5px;
-    align-items: center;
-    background-color: #e4e4e4;
-    border-radius: 5px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4)
-}
-
-.content_fecha {
-    margin: auto 0px;
-    height: 40px;
-}
-
-input[type="text"], select, input[type="number"]{
+input[type="text"], select, input[type="number"],
+input[type="date"]{
     border: 0px;
     width: 55%;
     border-radius: 5px;
@@ -121,20 +109,6 @@ input[type="text"], select, input[type="number"]{
 input:focus{
     outline: none;
     border: 1px solid #2c4018;
-}
-
-#input_entrega {
-    width: 20%;
-    border: 0px;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    border: 1px solid #2c4018;
-}
-
-.input_fecha {
-    width: 40%;
-    height: 30px;
-    border-radius: 5px;
 }
 
 .div_enviar_datos input {

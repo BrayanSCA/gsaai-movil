@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ConexionService {
   
-  url="http://127.0.0.1:80"
+  /* url="http://127.0.0.1:80" */
+
+  url="https://gsaai.000webhostapp.com/"
 
   constructor(public http:HttpClient) { }
 
@@ -245,11 +247,11 @@ export class ConexionService {
   } 
   
   verPilasActualizar(){
-    return this.http.get(this.url+`/pilaActualizarRead.php`);
+    return this.http.get(this.url+`/historialRead.php`);
   }
 
   verPilaActualizar(cod_actualiza:string){
-    return this.http.get(this.url+'/pilaActualizarGet.php?cod_actualiza='+cod_actualiza);
+    return this.http.get(this.url+'/historialGet.php?cod_actualiza='+cod_actualiza);
   }
 
   crearBitacora(data:any):Observable<any>{

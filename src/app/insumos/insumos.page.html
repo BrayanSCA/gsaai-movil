@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
       <!--datos principales usuario-->
@@ -52,23 +52,23 @@
         <form [formGroup]="form" autocomplete="off" (submit)="crearEntradaInsumo()">
 
           <div class="opciones">
-            <label for="in_fecha">Fecha:</label>
-            <input formControlName="fecha" type="date" class="in_fecha">
+            <label>Fecha:</label>
+            <input formControlName="fecha" type="date">
           </div>
 
           <div class="opciones">
-            <label for="in_usuario">Responsable:</label>
-            <select formControlName="responsable" id="in_usuario">
+            <label>Responsable:</label>
+            <select formControlName="responsable">
               <ng-container *ngIf="usuarioObservable | async as user">
                 <option>-Seleccionar responsable-</option>
-                <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
+                <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
               </ng-container>
             </select>
           </div>
 
           <div class="opciones">
-            <label for="in_insumo">Insumo:</label>
-            <select formControlName="nom_insumo" id="in_insumo">
+            <label>Insumo:</label>
+            <select formControlName="nom_insumo">
               <ng-container *ngIf="insumoservice.getInsumoObserver() | async as insumoData">
                 <option>-Seleccionar insumo-</option>
                 <option value="{{insumo.cod_insumo}}" *ngFor="let insumo of insumoData.insumos">{{insumo.nom_insumo}}
@@ -78,13 +78,13 @@
           </div>
 
           <div class="opciones">
-            <label for="stock">Cantidad:</label>
-            <input formControlName="cantidad" type="text" id="stock">
+            <label>Cantidad:</label>
+            <input formControlName="cantidad" type="text">
           </div>
 
           <div class="opciones">
-            <label for="estado">Estado:</label>
-            <select formControlName="estado" id="estado">
+            <label>Estado:</label>
+            <select formControlName="estado">
               <option value="" selected>-seleccione estado-</option>
               <option value="Buen estado">Buen estado</option>
               <option value="Regular">Regular</option>

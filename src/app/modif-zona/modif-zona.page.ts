@@ -25,7 +25,7 @@ export class ModifZonaPage implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])],
-      cod_zona: ['', Validators.compose([Validators.required])],
+      cod_zona: ['', Validators.compose([Validators.required,Validators.pattern(/^[0-9]+$/)])],
       nom_zona: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
 

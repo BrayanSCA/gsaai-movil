@@ -3,6 +3,7 @@
     <body>
         <div class="rectangulo1"></div>
         <main>
+
             <!-- Contenedor del login margen de 5    -->
             <div class="contenedor1">
                 <div class="logo_gsaai">
@@ -10,24 +11,23 @@
                 </div>
 
                 <form [formGroup]="form" (submit)="onSubmit()">
-                    <!--  (ngSubmit)="submit()" -->
+         
                     <!--cuadro que encierra el usuario y contraseña-->
                     <div class="cuadro">
                         <div class="bienvenida">
                             <p>Bienvenidos</p>
                         </div>
                         <!--inputs datos usuario-->
-                        <ion-item class="id">
-                            <ion-label position="floating">Documento</ion-label>
-                            <ion-input formControlName="documento" class="di" type="number"
-                                placeholder="Ingrese documento" autofocus required></ion-input>
-           
-                        </ion-item>
-                        <ion-item class="contrasena">
-                            <ion-label position="floating">Contraseña</ion-label>
-                            <ion-input formControlName="contrasena" class="pass" type="password"
-                                placeholder="Ingrese contrasena"></ion-input>
-                        </ion-item>
+                        <div class="id">
+                            <input formControlName="documento" class="di" type="text"
+                                placeholder="Ingrese documento" autofocus required>
+                        </div>
+
+                        <div class="contrasena">
+                            <!-- <label>Contraseña</label> -->
+                            <input formControlName="contrasena" class="pass" type="password"
+                                placeholder="Ingrese contrasena">
+                        </div>
 
                         <!--cuadro de check y link olvide contraseña-->
                         <div class="check">
@@ -41,11 +41,7 @@
                     </div>
 
                     <!--botón de login o Ingresar-->
-                    <ion-button  
-                        color="primary" 
-                        type="submit"
-                        [disabled]="form.invalid"
-                        class="ingresar">
+                    <ion-button color="primary" type="submit" [disabled]="form.invalid" class="ingresar">
                         <!--(click)="ingresar()"> [routerLink]="['/modulos']" --> <!-- (click)="ingresar()" -->
                         Ingresar
                     </ion-button>

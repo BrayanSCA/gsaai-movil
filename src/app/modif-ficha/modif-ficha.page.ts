@@ -25,7 +25,7 @@ export class ModifFichaPage implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       fecha: ['', Validators.compose([Validators.required])],
-      cod_ficha: ['', Validators.compose([Validators.required])],
+      cod_ficha: ['', Validators.compose([Validators.required,Validators.pattern(/^[0-9]+$/)])],
       nom_ficha: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
     })
 

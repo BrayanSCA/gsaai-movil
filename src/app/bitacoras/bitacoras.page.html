@@ -18,7 +18,7 @@
     <div class="container1">
       <!--foto de usuario-->
       <div class="usuario">
-        <img src="../../assets/icon/ava-men2.svg">
+        <img src="../../assets/icon/user-b.png">
       </div>
 
 
@@ -60,76 +60,45 @@
           <select formControlName="responsable">
             <ng-container *ngIf="usuarioObservable | async as user">
               <option>-Seleccionar responsable-</option>
-              <option value="{{user.rol}}">{{user.nombres}} {{user.apellidos}}</option>
+              <option value="{{user.di}}">{{user.nombres}} {{user.apellidos}}</option>
             </ng-container>
           </select>
         </div>
 
         <!--agregar actividades rutinarias-->
         <!-- <div> -->
-          <label class="label_titulo">Actividades rutinarias</label>
+        <label class="label_titulo">Actividades rutinarias</label>
 
-          <div class="lista">
+        <div class="lista">
 
-            <input type="checkbox" value="Bitácora" name="Bitácora">
-            <label for="Bitácora">Bitácora</label>
-
-            <input type="checkbox" value="Pedido insumos" name="Pedido insumos">
-            <label for="Pedido insumos">Pedido insumos</label>
-
-            <input type="checkbox" value="Recibir mp">
-            <label for="Recibir mp">Recibir mp</label>
-
-            <input type="checkbox" value="Actualizar pila">
-            <label for="Actualizar pila">Actualizar pila</label>
-
-            <input type="checkbox" value="Nueva pila">
-            <label for="Nueva pila">Nueva pila</label>
-
-            <input type="checkbox" value="Combinar pila">
-            <label for="Combinar pila">Combinar pila</label>
-
+          <div>
+            <input type="checkbox" value="Bitácora">Bitácora
           </div>
-<!-- 
-          <div class="caja_lista">
-            <select formControlName="rutinarias" multiple>
-              <option value="" selected>-Seleccione actividad-</option>
-              <option value="Bitácora">Bitácora</option>
-              <option value="Pedido insumos">Pedido insumos</option>
-              <option value="Recibir mp">Recibir mp</option>
-              <option value="Actualizar pila">Actualizar pila</option>
-              <option value="Nueva pila">Nueva pila</option>
-              <option value="Combinar pila">Combinar pila</option>
-            </select>
 
-            <button class="btn_agregar">Agregar</button>
-          </div> -->
+          <div>
+            <input type="checkbox" value="Pedido insumos">Pedido insumos
+          </div>
 
-<!--           <div class="content_table">
-            <table>
-              <tr>
-                <th>#</th>
-                <th>Actividad</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Bitácora</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Pedido insumos</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Recibir MP</td>
-              </tr>
-            </table>
-          </div> -->
-        <!-- </div> -->
+          <div>
+            <input type="checkbox" value="Recibir mp">Recibir mp
+          </div>
+
+          <div>
+            <input type="checkbox" value="Actualizar pila">Actualizar pila
+          </div>
+
+          <div>
+            <input type="checkbox" value="Nueva pila">Nueva pila
+          </div>
+
+          <div>
+            <input type="checkbox" value="Combinar pila">Combinar pila
+          </div>
+        </div>
 
         <!--agregar actividades no rutinarias-->
-        <div>
-          <label for="in_norutinaria" class="label_titulo">Actividades no rutinarias</label>
+        <label class="label_titulo">Actividades no rutinarias</label>
+        <!--  <div>
 
           <div class="opciones">
             <select formControlName="no_rutinarias" id="in_norutinaria">
@@ -163,19 +132,27 @@
               <td>Charla capacitación</td>
             </tr>
           </table>
+        </div> -->
+        <div class="lista" *ngIf="secundariaservice.getSecundariaObserver() | async as secundariaData">
+
+          <div *ngFor="let secundaria of secundariaData.secundarias">
+            <input formControlName="no_rutinarias" type="checkbox" value="{{secundaria.cod_secund}}">
+            {{secundaria.nom_acti_sec}}
+          </div>
+
         </div>
 
         <div class="opciones">
-          <label for="input_operarios"># Operarios:</label>
-          <input formControlName="num_operarios" type="number" id="input_operarios">
+          <label># Operarios:</label>
+          <input formControlName="num_operarios" type="number">
         </div>
 
         <div class="opciones">
-          <label for="insu_entregados">Insumos entregados:</label>
-          <input type="number" id="insu_entregados">
+          <label>Insumos entregados:</label>
+          <input type="number">
         </div>
 
-        <div class="">
+        <!--         <div class="">
           <label for="in_insumo" class="label_titulo">Insumos recibidos:</label>
           <div class="opciones">
 
@@ -194,9 +171,18 @@
           </div>
 
           <button class="btn_agregar">Agregar</button>
+        </div> -->
+
+        <div *ngIf="insumoservice.getInsumoObserver() | async as insumoData">
+
+          <div class="opciones" *ngFor="let insumo of insumoData.insumos">
+            <input formControlName="insumos" type="checkbox" value="{{insumo.cod_insumo}}">{{insumo.nom_insumo}}
+            <input type="number" >
+          </div>
+
         </div>
 
-        <div class="content_table">
+        <!-- <div class="content_table">
           <table>
             <tr>
               <th>#</th>
@@ -219,13 +205,13 @@
               <td>4</td>
             </tr>
           </table>
-        </div>
+        </div> -->
 
 
 
-        <div class="content_input_observaciones">
-          <label for="observaciones" class="label_observaciones">Observaciones:</label>
-          <textarea formControlName="observa" id="observaciones" maxlength="200" cols="30" rows="10"
+        <div class="opciones">
+          <label>Observaciones:</label>
+          <textarea formControlName="observa" maxlength="200" cols="30" rows="10"
             placeholder="max. 200 caracteres"></textarea>
         </div>
 

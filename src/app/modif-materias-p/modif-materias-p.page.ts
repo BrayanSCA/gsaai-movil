@@ -10,13 +10,13 @@ import UsuarioData from '../datos/usuario/usuariodata';
   styleUrls: ['./modif-materias-p.page.scss'],
 })
 export class ModifMateriasPPage implements OnInit {
-usuarioObservable=UsuarioData.getUsuarioObserver()
-cod_mp: any;
-nombre_mp: any;
-relacion_cn: any;
-codactual: any;
-form: FormGroup;
-isEdit: boolean=false;
+  usuarioObservable = UsuarioData.getUsuarioObserver()
+  cod_mp: any;
+  nombre_mp: any;
+  relacion_cn: any;
+  codactual: any;
+  form: FormGroup;
+  isEdit: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +24,7 @@ isEdit: boolean=false;
     private mpdataservice: MpService
   ) {
     this.form = this.formBuilder.group({
-      cod_mp: ['', Validators.compose([Validators.required])],
+      cod_mp: [0], // '', Validators.compose([Validators.required])
       nombre_mp: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       relacion_cn: ['', Validators.compose([Validators.required])],
     })
@@ -40,16 +40,17 @@ isEdit: boolean=false;
         this.form.get("relacion_cn")?.setValue(mpModificar.relacion_cn);
       }
     })
-   }
+  }
 
   ngOnInit() {
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     UsuarioData.cerrarsesion()
   }
 
   crearMp() {
+    console.log(this.form.value);
     if (this.isEdit) {
       this.mpdataservice.modificarMp(this.form, this.codactual);
     } else {
